@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+<style type="text/css">
+html,
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="C:\Users\apple\Downloads\paperjs-v0.12.0\dist\paper-full.js"></script>
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas">
+	
+var startHeight=400;
+var hostSize=20;
+var hostGap=30;
+var switchSize=50;
+var layer1Gap=100;
+var layer2Gap=100;
+var layer3Gap=100;
+
+var hosts=[];
+var swBase=[];
+var swAgg=[];
+var swCore=[];
+var linkH=[];
+var linkA=[];
+
+function getHeightSw(i)
+{
+    return hostSize+(hostGap-switchSize)*0.5+50+2*i*(hostSize+hostGap);
+}
+
+for(var i=0;i<16;i++)
+{
+//var i=4;
+//var rectangle = new Rectangle(new Point(50+i*100, 50), new Point(150+i*100, 100));
+
+ var rectangle = new Rectangle(new Point(50+i*(hostSize+hostGap), startHeight),new Point(50+i*(hostSize+hostGap)+hostSize, startHeight+hostSize));
+var path = new Path.Rectangle(rectangle);
+path.strokeColor = 'black';
+   //hosts.push(path); 
+}
+
+//var rectangle = new Rectangle(new Point(50, 50), new Point(150, 100));
+//var path = new Path.Rectangle(rectangle);
+//path.strokeColor = 'black';
+
+
+</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
