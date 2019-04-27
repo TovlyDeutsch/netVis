@@ -1,0 +1,214 @@
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on s4205-eth2, link-type EN10MB (Ethernet), capture size 262144 bytes
+23:42:34.460202 IP6 mininet > ip6-allrouters: ICMP6, router solicitation, length 16
+23:42:50.847285 IP6 mininet > ip6-allrouters: ICMP6, router solicitation, length 16
+23:42:57.799862 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell rfctest.harvard.edu, length 28
+23:42:57.800105 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:42:57.800519 IP rfctest.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21261, seq 1, length 64
+23:42:57.800751 IP divmhlpt104804e.university.harvard.edu > rfctest.harvard.edu: ICMP echo reply, id 21261, seq 1, length 64
+23:42:57.806146 ARP, Request who-has iniwhwks3292009.university.harvard.edu tell rfctest.harvard.edu, length 28
+23:42:57.806399 ARP, Reply iniwhwks3292009.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
+23:42:57.806874 IP rfctest.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21262, seq 1, length 64
+23:42:57.807123 IP iniwhwks3292009.university.harvard.edu > rfctest.harvard.edu: ICMP echo reply, id 21262, seq 1, length 64
+23:42:57.893855 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell paine-b-sw2.net.harvard.edu, length 28
+23:42:57.894040 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:42:57.894220 IP paine-b-sw2.net.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21276, seq 1, length 64
+23:42:57.894252 IP divmhlpt104804e.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21276, seq 1, length 64
+23:42:57.898319 ARP, Request who-has iniwhwks3292009.university.harvard.edu tell paine-b-sw2.net.harvard.edu, length 28
+23:42:57.898555 ARP, Reply iniwhwks3292009.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
+23:42:57.898661 IP paine-b-sw2.net.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21277, seq 1, length 64
+23:42:57.898689 IP iniwhwks3292009.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21277, seq 1, length 64
+23:42:57.972151 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell hamwhwks0643000.university.harvard.edu, length 28
+23:42:57.972335 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:42:57.972517 IP hamwhwks0643000.university.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21291, seq 1, length 64
+23:42:57.972546 IP divmhlpt104804e.university.harvard.edu > hamwhwks0643000.university.harvard.edu: ICMP echo reply, id 21291, seq 1, length 64
+23:42:57.977062 ARP, Request who-has iniwhwks3292009.university.harvard.edu tell hamwhwks0643000.university.harvard.edu, length 28
+23:42:57.977223 ARP, Reply iniwhwks3292009.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
+23:42:57.977294 IP hamwhwks0643000.university.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21292, seq 1, length 64
+23:42:57.977324 IP iniwhwks3292009.university.harvard.edu > hamwhwks0643000.university.harvard.edu: ICMP echo reply, id 21292, seq 1, length 64
+23:42:58.059066 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell divwhlpt1048016.university.harvard.edu, length 28
+23:42:58.059258 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:42:58.059435 IP divwhlpt1048016.university.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21306, seq 1, length 64
+23:42:58.059460 IP divmhlpt104804e.university.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo reply, id 21306, seq 1, length 64
+23:42:58.063653 ARP, Request who-has iniwhwks3292009.university.harvard.edu tell divwhlpt1048016.university.harvard.edu, length 28
+23:42:58.063813 ARP, Reply iniwhwks3292009.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
+23:42:58.063877 IP divwhlpt1048016.university.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21307, seq 1, length 64
+23:42:58.063902 IP iniwhwks3292009.university.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo reply, id 21307, seq 1, length 64
+23:42:58.152733 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell 10.0.0.5, length 28
+23:42:58.152864 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:42:58.153128 IP 10.0.0.5 > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21321, seq 1, length 64
+23:42:58.153154 IP divmhlpt104804e.university.harvard.edu > 10.0.0.5: ICMP echo reply, id 21321, seq 1, length 64
+23:42:58.158124 ARP, Request who-has iniwhwks3292009.university.harvard.edu tell 10.0.0.5, length 28
+23:42:58.158283 ARP, Reply iniwhwks3292009.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
+23:42:58.158565 IP 10.0.0.5 > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21322, seq 1, length 64
+23:42:58.158595 IP iniwhwks3292009.university.harvard.edu > 10.0.0.5: ICMP echo reply, id 21322, seq 1, length 64
+23:42:58.243819 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell 10.0.0.6, length 28
+23:42:58.243975 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:42:58.244165 IP 10.0.0.6 > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21336, seq 1, length 64
+23:42:58.244190 IP divmhlpt104804e.university.harvard.edu > 10.0.0.6: ICMP echo reply, id 21336, seq 1, length 64
+23:42:58.247910 ARP, Request who-has iniwhwks3292009.university.harvard.edu tell 10.0.0.6, length 28
+23:42:58.248096 ARP, Reply iniwhwks3292009.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
+23:42:58.248169 IP 10.0.0.6 > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21337, seq 1, length 64
+23:42:58.248198 IP iniwhwks3292009.university.harvard.edu > 10.0.0.6: ICMP echo reply, id 21337, seq 1, length 64
+23:42:58.333676 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell hrewhlpt2100046.university.harvard.edu, length 28
+23:42:58.333853 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:42:58.334078 IP hrewhlpt2100046.university.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21351, seq 1, length 64
+23:42:58.334111 IP divmhlpt104804e.university.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo reply, id 21351, seq 1, length 64
+23:42:58.339591 ARP, Request who-has iniwhwks3292009.university.harvard.edu tell hrewhlpt2100046.university.harvard.edu, length 28
+23:42:58.339760 ARP, Reply iniwhwks3292009.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
+23:42:58.340118 IP hrewhlpt2100046.university.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21352, seq 1, length 64
+23:42:58.340150 IP iniwhwks3292009.university.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo reply, id 21352, seq 1, length 64
+23:42:58.408265 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell 10.0.0.8, length 28
+23:42:58.408482 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:42:58.408677 IP 10.0.0.8 > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21366, seq 1, length 64
+23:42:58.408851 IP divmhlpt104804e.university.harvard.edu > 10.0.0.8: ICMP echo reply, id 21366, seq 1, length 64
+23:42:58.413265 ARP, Request who-has iniwhwks3292009.university.harvard.edu tell 10.0.0.8, length 28
+23:42:58.413531 ARP, Reply iniwhwks3292009.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
+23:42:58.413714 IP 10.0.0.8 > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21367, seq 1, length 64
+23:42:58.413876 IP iniwhwks3292009.university.harvard.edu > 10.0.0.8: ICMP echo reply, id 21367, seq 1, length 64
+23:42:58.483247 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell 10.0.0.9, length 28
+23:42:58.483393 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:42:58.483788 IP 10.0.0.9 > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21381, seq 1, length 64
+23:42:58.483821 IP divmhlpt104804e.university.harvard.edu > 10.0.0.9: ICMP echo reply, id 21381, seq 1, length 64
+23:42:58.488638 ARP, Request who-has iniwhwks3292009.university.harvard.edu tell 10.0.0.9, length 28
+23:42:58.488843 ARP, Reply iniwhwks3292009.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
+23:42:58.489129 IP 10.0.0.9 > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21382, seq 1, length 64
+23:42:58.489161 IP iniwhwks3292009.university.harvard.edu > 10.0.0.9: ICMP echo reply, id 21382, seq 1, length 64
+23:42:58.555988 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell 10.0.0.10, length 28
+23:42:58.556172 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:42:58.556484 IP 10.0.0.10 > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21396, seq 1, length 64
+23:42:58.556698 IP divmhlpt104804e.university.harvard.edu > 10.0.0.10: ICMP echo reply, id 21396, seq 1, length 64
+23:42:58.561167 ARP, Request who-has iniwhwks3292009.university.harvard.edu tell 10.0.0.10, length 28
+23:42:58.561349 ARP, Reply iniwhwks3292009.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
+23:42:58.561582 IP 10.0.0.10 > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21397, seq 1, length 64
+23:42:58.561752 IP iniwhwks3292009.university.harvard.edu > 10.0.0.10: ICMP echo reply, id 21397, seq 1, length 64
+23:42:58.589279 IP divmhlpt104804e.university.harvard.edu > rfctest.harvard.edu: ICMP echo request, id 21402, seq 1, length 64
+23:42:58.589356 IP rfctest.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21402, seq 1, length 64
+23:42:58.593214 IP divmhlpt104804e.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21403, seq 1, length 64
+23:42:58.593285 IP paine-b-sw2.net.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21403, seq 1, length 64
+23:42:58.597448 IP divmhlpt104804e.university.harvard.edu > hamwhwks0643000.university.harvard.edu: ICMP echo request, id 21404, seq 1, length 64
+23:42:58.597525 IP hamwhwks0643000.university.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21404, seq 1, length 64
+23:42:58.601351 IP divmhlpt104804e.university.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo request, id 21405, seq 1, length 64
+23:42:58.601424 IP divwhlpt1048016.university.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21405, seq 1, length 64
+23:42:58.605731 IP divmhlpt104804e.university.harvard.edu > 10.0.0.5: ICMP echo request, id 21406, seq 1, length 64
+23:42:58.605810 IP 10.0.0.5 > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21406, seq 1, length 64
+23:42:58.609451 IP divmhlpt104804e.university.harvard.edu > 10.0.0.6: ICMP echo request, id 21407, seq 1, length 64
+23:42:58.609528 IP 10.0.0.6 > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21407, seq 1, length 64
+23:42:58.613575 IP divmhlpt104804e.university.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo request, id 21408, seq 1, length 64
+23:42:58.613648 IP hrewhlpt2100046.university.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21408, seq 1, length 64
+23:42:58.617894 IP divmhlpt104804e.university.harvard.edu > 10.0.0.8: ICMP echo request, id 21409, seq 1, length 64
+23:42:58.617968 IP 10.0.0.8 > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21409, seq 1, length 64
+23:42:58.622255 IP divmhlpt104804e.university.harvard.edu > 10.0.0.9: ICMP echo request, id 21410, seq 1, length 64
+23:42:58.622307 IP 10.0.0.9 > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21410, seq 1, length 64
+23:42:58.626231 IP divmhlpt104804e.university.harvard.edu > 10.0.0.10: ICMP echo request, id 21411, seq 1, length 64
+23:42:58.626280 IP 10.0.0.10 > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21411, seq 1, length 64
+23:42:58.635226 ARP, Request who-has 10.0.0.13 tell divmhlpt104804e.university.harvard.edu, length 28
+23:42:58.635835 ARP, Reply 10.0.0.13 is-at 1e:a2:7f:3b:17:a8 (oui Unknown), length 28
+23:42:58.635976 IP divmhlpt104804e.university.harvard.edu > 10.0.0.13: ICMP echo request, id 21413, seq 1, length 64
+23:42:58.636253 IP 10.0.0.13 > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21413, seq 1, length 64
+23:42:58.640901 ARP, Request who-has 10.0.0.14 tell divmhlpt104804e.university.harvard.edu, length 28
+23:42:58.641290 ARP, Reply 10.0.0.14 is-at 26:23:22:1a:bd:ad (oui Unknown), length 28
+23:42:58.641460 IP divmhlpt104804e.university.harvard.edu > 10.0.0.14: ICMP echo request, id 21414, seq 1, length 64
+23:42:58.641679 IP 10.0.0.14 > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21414, seq 1, length 64
+23:42:58.645813 ARP, Request who-has 10.0.0.15 tell divmhlpt104804e.university.harvard.edu, length 28
+23:42:58.646236 ARP, Reply 10.0.0.15 is-at a6:f6:7f:9b:22:04 (oui Unknown), length 28
+23:42:58.646267 IP divmhlpt104804e.university.harvard.edu > 10.0.0.15: ICMP echo request, id 21415, seq 1, length 64
+23:42:58.646324 IP 10.0.0.15 > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21415, seq 1, length 64
+23:42:58.650584 ARP, Request who-has 10.0.0.16 tell divmhlpt104804e.university.harvard.edu, length 28
+23:42:58.651080 ARP, Reply 10.0.0.16 is-at b6:e3:93:ad:04:21 (oui Unknown), length 28
+23:42:58.651285 IP divmhlpt104804e.university.harvard.edu > 10.0.0.16: ICMP echo request, id 21416, seq 1, length 64
+23:42:58.651477 IP 10.0.0.16 > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21416, seq 1, length 64
+23:42:58.659693 IP iniwhwks3292009.university.harvard.edu > rfctest.harvard.edu: ICMP echo request, id 21417, seq 1, length 64
+23:42:58.659762 IP rfctest.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21417, seq 1, length 64
+23:42:58.663983 IP iniwhwks3292009.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21418, seq 1, length 64
+23:42:58.664073 IP paine-b-sw2.net.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21418, seq 1, length 64
+23:42:58.668182 IP iniwhwks3292009.university.harvard.edu > hamwhwks0643000.university.harvard.edu: ICMP echo request, id 21419, seq 1, length 64
+23:42:58.668252 IP hamwhwks0643000.university.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21419, seq 1, length 64
+23:42:58.672708 IP iniwhwks3292009.university.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo request, id 21420, seq 1, length 64
+23:42:58.672814 IP divwhlpt1048016.university.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21420, seq 1, length 64
+23:42:58.676880 IP iniwhwks3292009.university.harvard.edu > 10.0.0.5: ICMP echo request, id 21421, seq 1, length 64
+23:42:58.676955 IP 10.0.0.5 > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21421, seq 1, length 64
+23:42:58.680616 IP iniwhwks3292009.university.harvard.edu > 10.0.0.6: ICMP echo request, id 21422, seq 1, length 64
+23:42:58.680696 IP 10.0.0.6 > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21422, seq 1, length 64
+23:42:58.684426 IP iniwhwks3292009.university.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo request, id 21423, seq 1, length 64
+23:42:58.684521 IP hrewhlpt2100046.university.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21423, seq 1, length 64
+23:42:58.688863 IP iniwhwks3292009.university.harvard.edu > 10.0.0.8: ICMP echo request, id 21424, seq 1, length 64
+23:42:58.688941 IP 10.0.0.8 > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21424, seq 1, length 64
+23:42:58.692968 IP iniwhwks3292009.university.harvard.edu > 10.0.0.9: ICMP echo request, id 21425, seq 1, length 64
+23:42:58.693014 IP 10.0.0.9 > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21425, seq 1, length 64
+23:42:58.697107 IP iniwhwks3292009.university.harvard.edu > 10.0.0.10: ICMP echo request, id 21426, seq 1, length 64
+23:42:58.697208 IP 10.0.0.10 > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21426, seq 1, length 64
+23:42:58.705536 ARP, Request who-has 10.0.0.13 tell iniwhwks3292009.university.harvard.edu, length 28
+23:42:58.705998 ARP, Reply 10.0.0.13 is-at 1e:a2:7f:3b:17:a8 (oui Unknown), length 28
+23:42:58.706150 IP iniwhwks3292009.university.harvard.edu > 10.0.0.13: ICMP echo request, id 21428, seq 1, length 64
+23:42:58.706532 IP 10.0.0.13 > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21428, seq 1, length 64
+23:42:58.710625 ARP, Request who-has 10.0.0.14 tell iniwhwks3292009.university.harvard.edu, length 28
+23:42:58.710986 ARP, Reply 10.0.0.14 is-at 26:23:22:1a:bd:ad (oui Unknown), length 28
+23:42:58.711124 IP iniwhwks3292009.university.harvard.edu > 10.0.0.14: ICMP echo request, id 21429, seq 1, length 64
+23:42:58.711281 IP 10.0.0.14 > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21429, seq 1, length 64
+23:42:58.715184 ARP, Request who-has 10.0.0.15 tell iniwhwks3292009.university.harvard.edu, length 28
+23:42:58.715514 ARP, Reply 10.0.0.15 is-at a6:f6:7f:9b:22:04 (oui Unknown), length 28
+23:42:58.715546 IP iniwhwks3292009.university.harvard.edu > 10.0.0.15: ICMP echo request, id 21430, seq 1, length 64
+23:42:58.715881 IP 10.0.0.15 > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21430, seq 1, length 64
+23:42:58.720261 ARP, Request who-has 10.0.0.16 tell iniwhwks3292009.university.harvard.edu, length 28
+23:42:58.720508 ARP, Reply 10.0.0.16 is-at b6:e3:93:ad:04:21 (oui Unknown), length 28
+23:42:58.720743 IP iniwhwks3292009.university.harvard.edu > 10.0.0.16: ICMP echo request, id 21431, seq 1, length 64
+23:42:58.720956 IP 10.0.0.16 > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 21431, seq 1, length 64
+23:42:58.773114 IP 10.0.0.13 > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21442, seq 1, length 64
+23:42:58.773149 IP divmhlpt104804e.university.harvard.edu > 10.0.0.13: ICMP echo reply, id 21442, seq 1, length 64
+23:42:58.777145 IP 10.0.0.13 > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21443, seq 1, length 64
+23:42:58.777177 IP iniwhwks3292009.university.harvard.edu > 10.0.0.13: ICMP echo reply, id 21443, seq 1, length 64
+23:42:58.850365 IP 10.0.0.14 > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21457, seq 1, length 64
+23:42:58.850400 IP divmhlpt104804e.university.harvard.edu > 10.0.0.14: ICMP echo reply, id 21457, seq 1, length 64
+23:42:58.855062 IP 10.0.0.14 > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21458, seq 1, length 64
+23:42:58.855096 IP iniwhwks3292009.university.harvard.edu > 10.0.0.14: ICMP echo reply, id 21458, seq 1, length 64
+23:42:58.920494 IP 10.0.0.15 > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21472, seq 1, length 64
+23:42:58.920526 IP divmhlpt104804e.university.harvard.edu > 10.0.0.15: ICMP echo reply, id 21472, seq 1, length 64
+23:42:58.924454 IP 10.0.0.15 > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21473, seq 1, length 64
+23:42:58.924487 IP iniwhwks3292009.university.harvard.edu > 10.0.0.15: ICMP echo reply, id 21473, seq 1, length 64
+23:42:58.985055 IP 10.0.0.16 > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21487, seq 1, length 64
+23:42:58.985084 IP divmhlpt104804e.university.harvard.edu > 10.0.0.16: ICMP echo reply, id 21487, seq 1, length 64
+23:42:58.989819 IP 10.0.0.16 > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 21488, seq 1, length 64
+23:42:58.989850 IP iniwhwks3292009.university.harvard.edu > 10.0.0.16: ICMP echo reply, id 21488, seq 1, length 64
+23:43:02.875118 ARP, Request who-has rfctest.harvard.edu tell iniwhwks3292009.university.harvard.edu, length 28
+23:43:02.875122 ARP, Request who-has rfctest.harvard.edu tell divmhlpt104804e.university.harvard.edu, length 28
+23:43:02.875529 ARP, Reply rfctest.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
+23:43:02.875534 ARP, Reply rfctest.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
+23:43:03.131828 ARP, Request who-has divwhlpt1048016.university.harvard.edu tell iniwhwks3292009.university.harvard.edu, length 28
+23:43:03.131832 ARP, Request who-has divwhlpt1048016.university.harvard.edu tell divmhlpt104804e.university.harvard.edu, length 28
+23:43:03.131879 ARP, Request who-has hamwhwks0643000.university.harvard.edu tell iniwhwks3292009.university.harvard.edu, length 28
+23:43:03.131883 ARP, Request who-has hamwhwks0643000.university.harvard.edu tell divmhlpt104804e.university.harvard.edu, length 28
+23:43:03.131969 ARP, Request who-has paine-b-sw2.net.harvard.edu tell iniwhwks3292009.university.harvard.edu, length 28
+23:43:03.131973 ARP, Request who-has paine-b-sw2.net.harvard.edu tell divmhlpt104804e.university.harvard.edu, length 28
+23:43:03.133317 ARP, Reply divwhlpt1048016.university.harvard.edu is-at 56:29:a3:a2:20:61 (oui Unknown), length 28
+23:43:03.133324 ARP, Reply divwhlpt1048016.university.harvard.edu is-at 56:29:a3:a2:20:61 (oui Unknown), length 28
+23:43:03.133393 ARP, Reply hamwhwks0643000.university.harvard.edu is-at 92:a1:ff:1f:cd:c5 (oui Unknown), length 28
+23:43:03.133398 ARP, Reply hamwhwks0643000.university.harvard.edu is-at 92:a1:ff:1f:cd:c5 (oui Unknown), length 28
+23:43:03.133458 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
+23:43:03.133464 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
+23:43:03.390176 ARP, Request who-has hrewhlpt2100046.university.harvard.edu tell iniwhwks3292009.university.harvard.edu, length 28
+23:43:03.390180 ARP, Request who-has hrewhlpt2100046.university.harvard.edu tell divmhlpt104804e.university.harvard.edu, length 28
+23:43:03.390216 ARP, Request who-has 10.0.0.6 tell iniwhwks3292009.university.harvard.edu, length 28
+23:43:03.390220 ARP, Request who-has 10.0.0.6 tell divmhlpt104804e.university.harvard.edu, length 28
+23:43:03.390258 ARP, Request who-has 10.0.0.5 tell iniwhwks3292009.university.harvard.edu, length 28
+23:43:03.390261 ARP, Request who-has 10.0.0.5 tell divmhlpt104804e.university.harvard.edu, length 28
+23:43:03.391416 ARP, Reply hrewhlpt2100046.university.harvard.edu is-at de:fc:3a:de:5a:eb (oui Unknown), length 28
+23:43:03.391424 ARP, Reply hrewhlpt2100046.university.harvard.edu is-at de:fc:3a:de:5a:eb (oui Unknown), length 28
+23:43:03.391467 ARP, Reply 10.0.0.6 is-at 86:74:ea:fc:7a:62 (oui Unknown), length 28
+23:43:03.391472 ARP, Reply 10.0.0.6 is-at 86:74:ea:fc:7a:62 (oui Unknown), length 28
+23:43:03.391512 ARP, Reply 10.0.0.5 is-at 86:21:71:bd:c0:f8 (oui Unknown), length 28
+23:43:03.391517 ARP, Reply 10.0.0.5 is-at 86:21:71:bd:c0:f8 (oui Unknown), length 28
+23:43:03.643320 ARP, Request who-has 10.0.0.10 tell iniwhwks3292009.university.harvard.edu, length 28
+23:43:03.643329 ARP, Request who-has 10.0.0.9 tell divmhlpt104804e.university.harvard.edu, length 28
+23:43:03.643416 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell 10.0.0.14, length 28
+23:43:03.643361 ARP, Request who-has 10.0.0.10 tell divmhlpt104804e.university.harvard.edu, length 28
+23:43:03.643376 ARP, Request who-has 10.0.0.9 tell iniwhwks3292009.university.harvard.edu, length 28
+23:43:03.643505 ARP, Reply 10.0.0.10 is-at 9a:60:b4:e8:36:04 (oui Unknown), length 28
+23:43:03.643394 ARP, Request who-has 10.0.0.8 tell iniwhwks3292009.university.harvard.edu, length 28
+23:43:03.643397 ARP, Request who-has 10.0.0.8 tell divmhlpt104804e.university.harvard.edu, length 28
+23:43:03.643521 ARP, Reply 10.0.0.9 is-at 8a:c8:67:01:92:b9 (oui Unknown), length 28
+23:43:03.643535 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
+23:43:03.643634 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell 10.0.0.13, length 28
+23:43:03.643868 ARP, Reply 10.0.0.10 is-at 9a:60:b4:e8:36:04 (oui Unknown), length 28
+23:43:03.643892 ARP, Reply 10.0.0.9 is-at 8a:c8:67:01:92:b9 (oui Unknown), length 28
+23:43:03.643937 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), leng
