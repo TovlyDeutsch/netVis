@@ -1,224 +1,209 @@
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
 listening on s4201-eth1, link-type EN10MB (Ethernet), capture size 262144 bytes
-23:42:57.752856 ARP, Request who-has aardvark.university.harvard.edu tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.753489 ARP, Reply aardvark.university.harvard.edu is-at 92:a1:ff:1f:cd:c5 (oui Unknown), length 28
-23:42:57.753834 IP taubman-3s-sw1-vl-1.net.harvard.edu > aardvark.university.harvard.edu: ICMP echo request, id 21253, seq 1, length 64
-23:42:57.754333 IP aardvark.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21253, seq 1, length 64
-23:42:57.759043 ARP, Request who-has divwhlpt1048016.university.harvard.edu tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.759412 ARP, Reply divwhlpt1048016.university.harvard.edu is-at 56:29:a3:a2:20:61 (oui Unknown), length 28
-23:42:57.759586 IP taubman-3s-sw1-vl-1.net.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo request, id 21254, seq 1, length 64
-23:42:57.759991 IP divwhlpt1048016.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21254, seq 1, length 64
-23:42:57.764351 ARP, Request who-has 10.0.0.5 tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.765257 ARP, Reply 10.0.0.5 is-at 86:21:71:bd:c0:f8 (oui Unknown), length 28
-23:42:57.765298 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.5: ICMP echo request, id 21255, seq 1, length 64
-23:42:57.766235 IP 10.0.0.5 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21255, seq 1, length 64
-23:42:57.771025 ARP, Request who-has 10.0.0.6 tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.771658 ARP, Reply 10.0.0.6 is-at 86:74:ea:fc:7a:62 (oui Unknown), length 28
-23:42:57.771691 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.6: ICMP echo request, id 21256, seq 1, length 64
-23:42:57.772243 IP 10.0.0.6 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21256, seq 1, length 64
-23:42:57.776429 ARP, Request who-has hrewhlpt2100046.university.harvard.edu tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.777143 ARP, Reply hrewhlpt2100046.university.harvard.edu is-at de:fc:3a:de:5a:eb (oui Unknown), length 28
-23:42:57.777178 IP taubman-3s-sw1-vl-1.net.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo request, id 21257, seq 1, length 64
-23:42:57.777860 IP hrewhlpt2100046.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21257, seq 1, length 64
-23:42:57.781957 ARP, Request who-has 10.0.0.8 tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.782586 ARP, Reply 10.0.0.8 is-at 22:a1:4f:d4:cd:7d (oui Unknown), length 28
-23:42:57.782794 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.8: ICMP echo request, id 21258, seq 1, length 64
-23:42:57.783398 IP 10.0.0.8 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21258, seq 1, length 64
-23:42:57.788180 ARP, Request who-has 10.0.0.9 tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.788994 ARP, Reply 10.0.0.9 is-at 8a:c8:67:01:92:b9 (oui Unknown), length 28
-23:42:57.789029 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.9: ICMP echo request, id 21259, seq 1, length 64
-23:42:57.789700 IP 10.0.0.9 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21259, seq 1, length 64
-23:42:57.793983 ARP, Request who-has 10.0.0.10 tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.794741 ARP, Reply 10.0.0.10 is-at 9a:60:b4:e8:36:04 (oui Unknown), length 28
-23:42:57.794774 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.10: ICMP echo request, id 21260, seq 1, length 64
-23:42:57.795324 IP 10.0.0.10 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21260, seq 1, length 64
-23:42:57.799474 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.800212 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
-23:42:57.800245 IP taubman-3s-sw1-vl-1.net.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21261, seq 1, length 64
-23:42:57.800907 IP divmhlpt104804e.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21261, seq 1, length 64
-23:42:57.805741 ARP, Request who-has hulmhlpt1383001.university.harvard.edu tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.806421 ARP, Reply hulmhlpt1383001.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
-23:42:57.806455 IP taubman-3s-sw1-vl-1.net.harvard.edu > hulmhlpt1383001.university.harvard.edu: ICMP echo request, id 21262, seq 1, length 64
-23:42:57.807144 IP hulmhlpt1383001.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21262, seq 1, length 64
-23:42:57.811688 ARP, Request who-has 10.0.0.13 tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.812635 ARP, Reply 10.0.0.13 is-at 1e:a2:7f:3b:17:a8 (oui Unknown), length 28
-23:42:57.812679 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.13: ICMP echo request, id 21263, seq 1, length 64
-23:42:57.813415 IP 10.0.0.13 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21263, seq 1, length 64
-23:42:57.817716 ARP, Request who-has 10.0.0.14 tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.818373 ARP, Reply 10.0.0.14 is-at 26:23:22:1a:bd:ad (oui Unknown), length 28
-23:42:57.818399 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.14: ICMP echo request, id 21264, seq 1, length 64
-23:42:57.818973 IP 10.0.0.14 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21264, seq 1, length 64
-23:42:57.824810 ARP, Request who-has 10.0.0.15 tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.825636 ARP, Reply 10.0.0.15 is-at a6:f6:7f:9b:22:04 (oui Unknown), length 28
-23:42:57.825673 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.15: ICMP echo request, id 21265, seq 1, length 64
-23:42:57.826296 IP 10.0.0.15 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21265, seq 1, length 64
-23:42:57.830521 ARP, Request who-has 10.0.0.16 tell taubman-3s-sw1-vl-1.net.harvard.edu, length 28
-23:42:57.831312 ARP, Reply 10.0.0.16 is-at b6:e3:93:ad:04:21 (oui Unknown), length 28
-23:42:57.831463 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.16: ICMP echo request, id 21266, seq 1, length 64
-23:42:57.832045 IP 10.0.0.16 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 21266, seq 1, length 64
-23:42:57.849738 ARP, Request who-has aardvark.university.harvard.edu tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.850052 ARP, Reply aardvark.university.harvard.edu is-at 92:a1:ff:1f:cd:c5 (oui Unknown), length 28
-23:42:57.850291 IP paine-b-sw2.net.harvard.edu > aardvark.university.harvard.edu: ICMP echo request, id 21268, seq 1, length 64
-23:42:57.850642 IP aardvark.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21268, seq 1, length 64
-23:42:57.855479 ARP, Request who-has divwhlpt1048016.university.harvard.edu tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.855697 ARP, Reply divwhlpt1048016.university.harvard.edu is-at 56:29:a3:a2:20:61 (oui Unknown), length 28
-23:42:57.855936 IP paine-b-sw2.net.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo request, id 21269, seq 1, length 64
-23:42:57.856109 IP divwhlpt1048016.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21269, seq 1, length 64
-23:42:57.860719 ARP, Request who-has 10.0.0.5 tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.861242 ARP, Reply 10.0.0.5 is-at 86:21:71:bd:c0:f8 (oui Unknown), length 28
-23:42:57.861278 IP paine-b-sw2.net.harvard.edu > 10.0.0.5: ICMP echo request, id 21270, seq 1, length 64
-23:42:57.861649 IP 10.0.0.5 > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21270, seq 1, length 64
-23:42:57.866213 ARP, Request who-has 10.0.0.6 tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.866450 ARP, Reply 10.0.0.6 is-at 86:74:ea:fc:7a:62 (oui Unknown), length 28
-23:42:57.866484 IP paine-b-sw2.net.harvard.edu > 10.0.0.6: ICMP echo request, id 21271, seq 1, length 64
-23:42:57.866577 IP 10.0.0.6 > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21271, seq 1, length 64
-23:42:57.871433 ARP, Request who-has hrewhlpt2100046.university.harvard.edu tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.871766 ARP, Reply hrewhlpt2100046.university.harvard.edu is-at de:fc:3a:de:5a:eb (oui Unknown), length 28
-23:42:57.871803 IP paine-b-sw2.net.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo request, id 21272, seq 1, length 64
-23:42:57.871866 IP hrewhlpt2100046.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21272, seq 1, length 64
-23:42:57.876608 ARP, Request who-has 10.0.0.8 tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.876828 ARP, Reply 10.0.0.8 is-at 22:a1:4f:d4:cd:7d (oui Unknown), length 28
-23:42:57.877033 IP paine-b-sw2.net.harvard.edu > 10.0.0.8: ICMP echo request, id 21273, seq 1, length 64
-23:42:57.877108 IP 10.0.0.8 > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21273, seq 1, length 64
-23:42:57.881517 ARP, Request who-has 10.0.0.9 tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.882094 ARP, Reply 10.0.0.9 is-at 8a:c8:67:01:92:b9 (oui Unknown), length 28
-23:42:57.882133 IP paine-b-sw2.net.harvard.edu > 10.0.0.9: ICMP echo request, id 21274, seq 1, length 64
-23:42:57.882363 IP 10.0.0.9 > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21274, seq 1, length 64
-23:42:57.887158 ARP, Request who-has 10.0.0.10 tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.887421 ARP, Reply 10.0.0.10 is-at 9a:60:b4:e8:36:04 (oui Unknown), length 28
-23:42:57.887462 IP paine-b-sw2.net.harvard.edu > 10.0.0.10: ICMP echo request, id 21275, seq 1, length 64
-23:42:57.887536 IP 10.0.0.10 > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21275, seq 1, length 64
-23:42:57.893829 ARP, Request who-has divmhlpt104804e.university.harvard.edu tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.894164 ARP, Reply divmhlpt104804e.university.harvard.edu is-at a2:de:e5:ff:01:9b (oui Unknown), length 28
-23:42:57.894199 IP paine-b-sw2.net.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 21276, seq 1, length 64
-23:42:57.894266 IP divmhlpt104804e.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21276, seq 1, length 64
-23:42:57.898293 ARP, Request who-has hulmhlpt1383001.university.harvard.edu tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.898575 ARP, Reply hulmhlpt1383001.university.harvard.edu is-at 7a:3d:c3:54:48:4a (oui Unknown), length 28
-23:42:57.898645 IP paine-b-sw2.net.harvard.edu > hulmhlpt1383001.university.harvard.edu: ICMP echo request, id 21277, seq 1, length 64
-23:42:57.898701 IP hulmhlpt1383001.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21277, seq 1, length 64
-23:42:57.903051 ARP, Request who-has 10.0.0.13 tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.903531 ARP, Reply 10.0.0.13 is-at 1e:a2:7f:3b:17:a8 (oui Unknown), length 28
-23:42:57.903568 IP paine-b-sw2.net.harvard.edu > 10.0.0.13: ICMP echo request, id 21278, seq 1, length 64
-23:42:57.903768 IP 10.0.0.13 > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21278, seq 1, length 64
-23:42:57.907902 ARP, Request who-has 10.0.0.14 tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.908089 ARP, Reply 10.0.0.14 is-at 26:23:22:1a:bd:ad (oui Unknown), length 28
-23:42:57.908120 IP paine-b-sw2.net.harvard.edu > 10.0.0.14: ICMP echo request, id 21279, seq 1, length 64
-23:42:57.908213 IP 10.0.0.14 > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21279, seq 1, length 64
-23:42:57.912483 ARP, Request who-has 10.0.0.15 tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.912831 ARP, Reply 10.0.0.15 is-at a6:f6:7f:9b:22:04 (oui Unknown), length 28
-23:42:57.912866 IP paine-b-sw2.net.harvard.edu > 10.0.0.15: ICMP echo request, id 21280, seq 1, length 64
-23:42:57.912922 IP 10.0.0.15 > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21280, seq 1, length 64
-23:42:57.917025 ARP, Request who-has 10.0.0.16 tell paine-b-sw2.net.harvard.edu, length 28
-23:42:57.917229 ARP, Reply 10.0.0.16 is-at b6:e3:93:ad:04:21 (oui Unknown), length 28
-23:42:57.917423 IP paine-b-sw2.net.harvard.edu > 10.0.0.16: ICMP echo request, id 21281, seq 1, length 64
-23:42:57.917510 IP 10.0.0.16 > paine-b-sw2.net.harvard.edu: ICMP echo reply, id 21281, seq 1, length 64
-23:42:57.927628 IP aardvark.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21282, seq 1, length 64
-23:42:57.927661 IP taubman-3s-sw1-vl-1.net.harvard.edu > aardvark.university.harvard.edu: ICMP echo reply, id 21282, seq 1, length 64
-23:42:57.931280 IP aardvark.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21283, seq 1, length 64
-23:42:57.931311 IP paine-b-sw2.net.harvard.edu > aardvark.university.harvard.edu: ICMP echo reply, id 21283, seq 1, length 64
-23:42:58.006928 IP divwhlpt1048016.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21297, seq 1, length 64
-23:42:58.006962 IP taubman-3s-sw1-vl-1.net.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo reply, id 21297, seq 1, length 64
-23:42:58.011547 IP divwhlpt1048016.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21298, seq 1, length 64
-23:42:58.011576 IP paine-b-sw2.net.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo reply, id 21298, seq 1, length 64
-23:42:58.098286 IP 10.0.0.5 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21312, seq 1, length 64
-23:42:58.098318 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.5: ICMP echo reply, id 21312, seq 1, length 64
-23:42:58.103632 IP 10.0.0.5 > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21313, seq 1, length 64
-23:42:58.103660 IP paine-b-sw2.net.harvard.edu > 10.0.0.5: ICMP echo reply, id 21313, seq 1, length 64
-23:42:58.201760 IP 10.0.0.6 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21327, seq 1, length 64
-23:42:58.201795 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.6: ICMP echo reply, id 21327, seq 1, length 64
-23:42:58.205914 IP 10.0.0.6 > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21328, seq 1, length 64
-23:42:58.205944 IP paine-b-sw2.net.harvard.edu > 10.0.0.6: ICMP echo reply, id 21328, seq 1, length 64
-23:42:58.276020 IP hrewhlpt2100046.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21342, seq 1, length 64
-23:42:58.276055 IP taubman-3s-sw1-vl-1.net.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo reply, id 21342, seq 1, length 64
-23:42:58.280698 IP hrewhlpt2100046.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21343, seq 1, length 64
-23:42:58.280729 IP paine-b-sw2.net.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo reply, id 21343, seq 1, length 64
-23:42:58.367896 IP 10.0.0.8 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21357, seq 1, length 64
-23:42:58.367923 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.8: ICMP echo reply, id 21357, seq 1, length 64
-23:42:58.371885 IP 10.0.0.8 > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21358, seq 1, length 64
-23:42:58.371915 IP paine-b-sw2.net.harvard.edu > 10.0.0.8: ICMP echo reply, id 21358, seq 1, length 64
-23:42:58.443952 IP 10.0.0.9 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21372, seq 1, length 64
-23:42:58.443979 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.9: ICMP echo reply, id 21372, seq 1, length 64
-23:42:58.447958 IP 10.0.0.9 > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21373, seq 1, length 64
-23:42:58.447988 IP paine-b-sw2.net.harvard.edu > 10.0.0.9: ICMP echo reply, id 21373, seq 1, length 64
-23:42:58.518608 IP 10.0.0.10 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21387, seq 1, length 64
-23:42:58.518682 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.10: ICMP echo reply, id 21387, seq 1, length 64
-23:42:58.523010 IP 10.0.0.10 > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21388, seq 1, length 64
-23:42:58.523040 IP paine-b-sw2.net.harvard.edu > 10.0.0.10: ICMP echo reply, id 21388, seq 1, length 64
-23:42:58.589307 IP divmhlpt104804e.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21402, seq 1, length 64
-23:42:58.589336 IP taubman-3s-sw1-vl-1.net.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21402, seq 1, length 64
-23:42:58.593238 IP divmhlpt104804e.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21403, seq 1, length 64
-23:42:58.593269 IP paine-b-sw2.net.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 21403, seq 1, length 64
-23:42:58.659720 IP hulmhlpt1383001.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21417, seq 1, length 64
-23:42:58.659747 IP taubman-3s-sw1-vl-1.net.harvard.edu > hulmhlpt1383001.university.harvard.edu: ICMP echo reply, id 21417, seq 1, length 64
-23:42:58.664012 IP hulmhlpt1383001.university.harvard.edu > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21418, seq 1, length 64
-23:42:58.664053 IP paine-b-sw2.net.harvard.edu > hulmhlpt1383001.university.harvard.edu: ICMP echo reply, id 21418, seq 1, length 64
-23:42:58.729863 IP 10.0.0.13 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21432, seq 1, length 64
-23:42:58.729894 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.13: ICMP echo reply, id 21432, seq 1, length 64
-23:42:58.734146 IP 10.0.0.13 > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21433, seq 1, length 64
-23:42:58.734176 IP paine-b-sw2.net.harvard.edu > 10.0.0.13: ICMP echo reply, id 21433, seq 1, length 64
-23:42:58.800056 IP 10.0.0.14 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21447, seq 1, length 64
-23:42:58.800085 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.14: ICMP echo reply, id 21447, seq 1, length 64
-23:42:58.804127 IP 10.0.0.14 > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21448, seq 1, length 64
-23:42:58.804160 IP paine-b-sw2.net.harvard.edu > 10.0.0.14: ICMP echo reply, id 21448, seq 1, length 64
-23:42:58.878023 IP 10.0.0.15 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21462, seq 1, length 64
-23:42:58.878057 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.15: ICMP echo reply, id 21462, seq 1, length 64
-23:42:58.882422 IP 10.0.0.15 > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21463, seq 1, length 64
-23:42:58.882453 IP paine-b-sw2.net.harvard.edu > 10.0.0.15: ICMP echo reply, id 21463, seq 1, length 64
-23:42:58.944943 IP 10.0.0.16 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 21477, seq 1, length 64
-23:42:58.944969 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.16: ICMP echo reply, id 21477, seq 1, length 64
-23:42:58.948715 IP 10.0.0.16 > paine-b-sw2.net.harvard.edu: ICMP echo request, id 21478, seq 1, length 64
-23:42:58.948744 IP paine-b-sw2.net.harvard.edu > 10.0.0.16: ICMP echo reply, id 21478, seq 1, length 64
-23:43:02.875155 ARP, Request who-has paine-b-sw2.net.harvard.edu tell divwhlpt1048016.university.harvard.edu, length 28
-23:43:02.875158 ARP, Request who-has paine-b-sw2.net.harvard.edu tell aardvark.university.harvard.edu, length 28
-23:43:02.875211 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell divwhlpt1048016.university.harvard.edu, length 28
-23:43:02.875217 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell aardvark.university.harvard.edu, length 28
-23:43:02.875236 ARP, Request who-has paine-b-sw2.net.harvard.edu tell hrewhlpt2100046.university.harvard.edu, length 28
-23:43:02.875241 ARP, Request who-has paine-b-sw2.net.harvard.edu tell 10.0.0.6, length 28
-23:43:02.875246 ARP, Request who-has paine-b-sw2.net.harvard.edu tell 10.0.0.5, length 28
-23:43:02.875261 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell 10.0.0.15, length 28
-23:43:02.875266 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell 10.0.0.14, length 28
-23:43:02.875267 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell 10.0.0.16, length 28
-23:43:02.875271 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell 10.0.0.10, length 28
-23:43:02.875273 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell 10.0.0.13, length 28
-23:43:02.875276 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell 10.0.0.9, length 28
-23:43:02.875278 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell hulmhlpt1383001.university.harvard.edu, length 28
-23:43:02.875282 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell 10.0.0.6, length 28
-23:43:02.875283 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell divmhlpt104804e.university.harvard.edu, length 28
-23:43:02.875288 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell 10.0.0.8, length 28
-23:43:02.875293 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell hrewhlpt2100046.university.harvard.edu, length 28
-23:43:02.875298 ARP, Request who-has taubman-3s-sw1-vl-1.net.harvard.edu tell 10.0.0.5, length 28
-23:43:02.875298 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:02.875314 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:02.875343 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875347 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875358 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:02.875361 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:02.875365 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:02.875373 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875377 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875398 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875381 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875401 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875385 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875405 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875389 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875410 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875413 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875417 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:02.875420 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 12:b3:8d:e2:20:85 (oui Unknown), length 28
-23:43:03.132502 ARP, Request who-has paine-b-sw2.net.harvard.edu tell 10.0.0.16, length 28
-23:43:03.132508 ARP, Request who-has paine-b-sw2.net.harvard.edu tell 10.0.0.15, length 28
-23:43:03.132512 ARP, Request who-has paine-b-sw2.net.harvard.edu tell 10.0.0.14, length 28
-23:43:03.132517 ARP, Request who-has paine-b-sw2.net.harvard.edu tell 10.0.0.13, length 28
-23:43:03.132522 ARP, Request who-has paine-b-sw2.net.harvard.edu tell hulmhlpt1383001.university.harvard.edu, length 28
-23:43:03.132527 ARP, Request who-has paine-b-sw2.net.harvard.edu tell divmhlpt104804e.university.harvard.edu, length 28
-23:43:03.132532 ARP, Request who-has paine-b-sw2.net.harvard.edu tell 10.0.0.10, length 28
-23:43:03.132537 ARP, Request who-has paine-b-sw2.net.harvard.edu tell 10.0.0.9, length 28
-23:43:03.132542 ARP, Request who-has paine-b-sw2.net.harvard.edu tell 10.0.0.8, length 28
-23:43:03.132885 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:03.132889 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:03.132892 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:03.132895 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:03.132929 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:03.132933 ARP, Reply paine-b-sw2.net.harvard.edu is-at 62:6c:1e:e9:a2:6a (oui Unknown), length 28
-23:43:03.132936 ARP, Reply paine-b-sw2.net.harvard.e
+01:15:11.015941 IP taubman-3s-sw1-vl-1.net.harvard.edu > aardvark.university.harvard.edu: ICMP echo request, id 3481, seq 1, length 64
+01:15:11.016383 IP aardvark.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3481, seq 1, length 64
+01:15:11.019680 IP taubman-3s-sw1-vl-1.net.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo request, id 3482, seq 1, length 64
+01:15:11.020041 IP divwhlpt1048016.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3482, seq 1, length 64
+01:15:11.023436 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.5: ICMP echo request, id 3483, seq 1, length 64
+01:15:11.024209 IP 10.0.0.5 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3483, seq 1, length 64
+01:15:11.027733 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.6: ICMP echo request, id 3484, seq 1, length 64
+01:15:11.028313 IP 10.0.0.6 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3484, seq 1, length 64
+01:15:11.031520 IP taubman-3s-sw1-vl-1.net.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo request, id 3485, seq 1, length 64
+01:15:11.032096 IP hrewhlpt2100046.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3485, seq 1, length 64
+01:15:11.035486 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.8: ICMP echo request, id 3486, seq 1, length 64
+01:15:11.036059 IP 10.0.0.8 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3486, seq 1, length 64
+01:15:11.040001 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.9: ICMP echo request, id 3487, seq 1, length 64
+01:15:11.040725 IP 10.0.0.9 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3487, seq 1, length 64
+01:15:11.044112 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.10: ICMP echo request, id 3488, seq 1, length 64
+01:15:11.044722 IP 10.0.0.10 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3488, seq 1, length 64
+01:15:11.048080 IP taubman-3s-sw1-vl-1.net.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 3489, seq 1, length 64
+01:15:11.048660 IP divmhlpt104804e.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3489, seq 1, length 64
+01:15:11.052071 IP taubman-3s-sw1-vl-1.net.harvard.edu > hulmhlpt1383001.university.harvard.edu: ICMP echo request, id 3490, seq 1, length 64
+01:15:11.052714 IP hulmhlpt1383001.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3490, seq 1, length 64
+01:15:11.056384 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.13: ICMP echo request, id 3491, seq 1, length 64
+01:15:11.057067 IP 10.0.0.13 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3491, seq 1, length 64
+01:15:11.060314 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.14: ICMP echo request, id 3492, seq 1, length 64
+01:15:11.060818 IP 10.0.0.14 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3492, seq 1, length 64
+01:15:11.064198 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.15: ICMP echo request, id 3493, seq 1, length 64
+01:15:11.064813 IP 10.0.0.15 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3493, seq 1, length 64
+01:15:11.068235 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.16: ICMP echo request, id 3494, seq 1, length 64
+01:15:11.068733 IP 10.0.0.16 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3494, seq 1, length 64
+01:15:11.079104 IP daisy.university.harvard.edu > aardvark.university.harvard.edu: ICMP echo request, id 3496, seq 1, length 64
+01:15:11.079308 IP aardvark.university.harvard.edu > daisy.university.harvard.edu: ICMP echo reply, id 3496, seq 1, length 64
+01:15:11.082971 IP daisy.university.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo request, id 3497, seq 1, length 64
+01:15:11.083145 IP divwhlpt1048016.university.harvard.edu > daisy.university.harvard.edu: ICMP echo reply, id 3497, seq 1, length 64
+01:15:11.086414 IP daisy.university.harvard.edu > 10.0.0.5: ICMP echo request, id 3498, seq 1, length 64
+01:15:11.086786 IP 10.0.0.5 > daisy.university.harvard.edu: ICMP echo reply, id 3498, seq 1, length 64
+01:15:11.090392 IP daisy.university.harvard.edu > 10.0.0.6: ICMP echo request, id 3499, seq 1, length 64
+01:15:11.090471 IP 10.0.0.6 > daisy.university.harvard.edu: ICMP echo reply, id 3499, seq 1, length 64
+01:15:11.093734 IP daisy.university.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo request, id 3500, seq 1, length 64
+01:15:11.093812 IP hrewhlpt2100046.university.harvard.edu > daisy.university.harvard.edu: ICMP echo reply, id 3500, seq 1, length 64
+01:15:11.097249 IP daisy.university.harvard.edu > 10.0.0.8: ICMP echo request, id 3501, seq 1, length 64
+01:15:11.097307 IP 10.0.0.8 > daisy.university.harvard.edu: ICMP echo reply, id 3501, seq 1, length 64
+01:15:11.100840 IP daisy.university.harvard.edu > 10.0.0.9: ICMP echo request, id 3502, seq 1, length 64
+01:15:11.101189 IP 10.0.0.9 > daisy.university.harvard.edu: ICMP echo reply, id 3502, seq 1, length 64
+01:15:11.104757 IP daisy.university.harvard.edu > 10.0.0.10: ICMP echo request, id 3503, seq 1, length 64
+01:15:11.104860 IP 10.0.0.10 > daisy.university.harvard.edu: ICMP echo reply, id 3503, seq 1, length 64
+01:15:11.108331 IP daisy.university.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 3504, seq 1, length 64
+01:15:11.108392 IP divmhlpt104804e.university.harvard.edu > daisy.university.harvard.edu: ICMP echo reply, id 3504, seq 1, length 64
+01:15:11.116756 IP daisy.university.harvard.edu > hulmhlpt1383001.university.harvard.edu: ICMP echo request, id 3505, seq 1, length 64
+01:15:11.116834 IP hulmhlpt1383001.university.harvard.edu > daisy.university.harvard.edu: ICMP echo reply, id 3505, seq 1, length 64
+01:15:11.120328 IP daisy.university.harvard.edu > 10.0.0.13: ICMP echo request, id 3506, seq 1, length 64
+01:15:11.120614 IP 10.0.0.13 > daisy.university.harvard.edu: ICMP echo reply, id 3506, seq 1, length 64
+01:15:11.124225 IP daisy.university.harvard.edu > 10.0.0.14: ICMP echo request, id 3507, seq 1, length 64
+01:15:11.124308 IP 10.0.0.14 > daisy.university.harvard.edu: ICMP echo reply, id 3507, seq 1, length 64
+01:15:11.127554 IP daisy.university.harvard.edu > 10.0.0.15: ICMP echo request, id 3508, seq 1, length 64
+01:15:11.127620 IP 10.0.0.15 > daisy.university.harvard.edu: ICMP echo reply, id 3508, seq 1, length 64
+01:15:11.131033 IP daisy.university.harvard.edu > 10.0.0.16: ICMP echo request, id 3509, seq 1, length 64
+01:15:11.131094 IP 10.0.0.16 > daisy.university.harvard.edu: ICMP echo reply, id 3509, seq 1, length 64
+01:15:11.138372 IP aardvark.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3510, seq 1, length 64
+01:15:11.138408 IP taubman-3s-sw1-vl-1.net.harvard.edu > aardvark.university.harvard.edu: ICMP echo reply, id 3510, seq 1, length 64
+01:15:11.142549 IP aardvark.university.harvard.edu > daisy.university.harvard.edu: ICMP echo request, id 3511, seq 1, length 64
+01:15:11.142581 IP daisy.university.harvard.edu > aardvark.university.harvard.edu: ICMP echo reply, id 3511, seq 1, length 64
+01:15:11.206886 IP divwhlpt1048016.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3525, seq 1, length 64
+01:15:11.206909 IP taubman-3s-sw1-vl-1.net.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo reply, id 3525, seq 1, length 64
+01:15:11.210101 IP divwhlpt1048016.university.harvard.edu > daisy.university.harvard.edu: ICMP echo request, id 3526, seq 1, length 64
+01:15:11.210131 IP daisy.university.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo reply, id 3526, seq 1, length 64
+01:15:11.260895 IP 10.0.0.5 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3540, seq 1, length 64
+01:15:11.260918 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.5: ICMP echo reply, id 3540, seq 1, length 64
+01:15:11.264309 IP 10.0.0.5 > daisy.university.harvard.edu: ICMP echo request, id 3541, seq 1, length 64
+01:15:11.264333 IP daisy.university.harvard.edu > 10.0.0.5: ICMP echo reply, id 3541, seq 1, length 64
+01:15:11.319203 IP 10.0.0.6 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3555, seq 1, length 64
+01:15:11.319225 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.6: ICMP echo reply, id 3555, seq 1, length 64
+01:15:11.322649 IP 10.0.0.6 > daisy.university.harvard.edu: ICMP echo request, id 3556, seq 1, length 64
+01:15:11.322672 IP daisy.university.harvard.edu > 10.0.0.6: ICMP echo reply, id 3556, seq 1, length 64
+01:15:11.372828 IP hrewhlpt2100046.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3570, seq 1, length 64
+01:15:11.372854 IP taubman-3s-sw1-vl-1.net.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo reply, id 3570, seq 1, length 64
+01:15:11.376405 IP hrewhlpt2100046.university.harvard.edu > daisy.university.harvard.edu: ICMP echo request, id 3571, seq 1, length 64
+01:15:11.376437 IP daisy.university.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo reply, id 3571, seq 1, length 64
+01:15:11.431844 IP 10.0.0.8 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3585, seq 1, length 64
+01:15:11.431867 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.8: ICMP echo reply, id 3585, seq 1, length 64
+01:15:11.435184 IP 10.0.0.8 > daisy.university.harvard.edu: ICMP echo request, id 3586, seq 1, length 64
+01:15:11.435211 IP daisy.university.harvard.edu > 10.0.0.8: ICMP echo reply, id 3586, seq 1, length 64
+01:15:11.488060 IP 10.0.0.9 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3600, seq 1, length 64
+01:15:11.488085 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.9: ICMP echo reply, id 3600, seq 1, length 64
+01:15:11.491691 IP 10.0.0.9 > daisy.university.harvard.edu: ICMP echo request, id 3601, seq 1, length 64
+01:15:11.491716 IP daisy.university.harvard.edu > 10.0.0.9: ICMP echo reply, id 3601, seq 1, length 64
+01:15:11.546841 IP 10.0.0.10 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3615, seq 1, length 64
+01:15:11.546864 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.10: ICMP echo reply, id 3615, seq 1, length 64
+01:15:11.550215 IP 10.0.0.10 > daisy.university.harvard.edu: ICMP echo request, id 3616, seq 1, length 64
+01:15:11.550245 IP daisy.university.harvard.edu > 10.0.0.10: ICMP echo reply, id 3616, seq 1, length 64
+01:15:11.602264 IP divmhlpt104804e.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3630, seq 1, length 64
+01:15:11.602286 IP taubman-3s-sw1-vl-1.net.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 3630, seq 1, length 64
+01:15:11.605543 IP divmhlpt104804e.university.harvard.edu > daisy.university.harvard.edu: ICMP echo request, id 3631, seq 1, length 64
+01:15:11.605567 IP daisy.university.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 3631, seq 1, length 64
+01:15:11.656086 IP hulmhlpt1383001.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3645, seq 1, length 64
+01:15:11.656115 IP taubman-3s-sw1-vl-1.net.harvard.edu > hulmhlpt1383001.university.harvard.edu: ICMP echo reply, id 3645, seq 1, length 64
+01:15:11.659670 IP hulmhlpt1383001.university.harvard.edu > daisy.university.harvard.edu: ICMP echo request, id 3646, seq 1, length 64
+01:15:11.659698 IP daisy.university.harvard.edu > hulmhlpt1383001.university.harvard.edu: ICMP echo reply, id 3646, seq 1, length 64
+01:15:11.713736 IP 10.0.0.13 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3660, seq 1, length 64
+01:15:11.713764 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.13: ICMP echo reply, id 3660, seq 1, length 64
+01:15:11.717116 IP 10.0.0.13 > daisy.university.harvard.edu: ICMP echo request, id 3661, seq 1, length 64
+01:15:11.717138 IP daisy.university.harvard.edu > 10.0.0.13: ICMP echo reply, id 3661, seq 1, length 64
+01:15:11.768559 IP 10.0.0.14 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3675, seq 1, length 64
+01:15:11.768586 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.14: ICMP echo reply, id 3675, seq 1, length 64
+01:15:11.772103 IP 10.0.0.14 > daisy.university.harvard.edu: ICMP echo request, id 3676, seq 1, length 64
+01:15:11.772132 IP daisy.university.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ngth 28
+01:14:55.876067 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 66:34:04:b6:b0:82 (oui Unknown), length 28
+01:14:55.876072 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 66:34:04:b6:b0:82 (oui Unknown), length 28
+01:14:55.876077 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 66:34:04:b6:b0:82 (oui Unknown), length 28
+01:14:55.876082 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 66:34:04:b6:b0:82 (oui Unknown), length 28
+01:14:55.876089 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 66:34:04:b6:b0:82 (oui Unknown), length 28
+01:14:55.876095 ARP, Reply taubman-3s-sw1-vl-1.net.harvard.edu is-at 66:34:04:b6:b0:82 (oui Unknown), length 28
+01:15:11.015941 IP taubman-3s-sw1-vl-1.net.harvard.edu > uismhlpt401301e.university.harvard.edu: ICMP echo request, id 3481, seq 1, length 64
+01:15:11.016383 IP uismhlpt401301e.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3481, seq 1, length 64
+01:15:11.019680 IP taubman-3s-sw1-vl-1.net.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo request, id 3482, seq 1, length 64
+01:15:11.020041 IP divwhlpt1048016.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3482, seq 1, length 64
+01:15:11.023436 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.5: ICMP echo request, id 3483, seq 1, length 64
+01:15:11.024209 IP 10.0.0.5 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3483, seq 1, length 64
+01:15:11.027733 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.6: ICMP echo request, id 3484, seq 1, length 64
+01:15:11.028313 IP 10.0.0.6 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3484, seq 1, length 64
+01:15:11.031520 IP taubman-3s-sw1-vl-1.net.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo request, id 3485, seq 1, length 64
+01:15:11.032096 IP hrewhlpt2100046.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3485, seq 1, length 64
+01:15:11.035486 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.8: ICMP echo request, id 3486, seq 1, length 64
+01:15:11.036059 IP 10.0.0.8 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3486, seq 1, length 64
+01:15:11.040001 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.9: ICMP echo request, id 3487, seq 1, length 64
+01:15:11.040725 IP 10.0.0.9 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3487, seq 1, length 64
+01:15:11.044112 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.10: ICMP echo request, id 3488, seq 1, length 64
+01:15:11.044722 IP 10.0.0.10 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3488, seq 1, length 64
+01:15:11.048080 IP taubman-3s-sw1-vl-1.net.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 3489, seq 1, length 64
+01:15:11.048660 IP divmhlpt104804e.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3489, seq 1, length 64
+01:15:11.052071 IP taubman-3s-sw1-vl-1.net.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 3490, seq 1, length 64
+01:15:11.052714 IP iniwhwks3292009.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3490, seq 1, length 64
+01:15:11.056384 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.13: ICMP echo request, id 3491, seq 1, length 64
+01:15:11.057067 IP 10.0.0.13 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3491, seq 1, length 64
+01:15:11.060314 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.14: ICMP echo request, id 3492, seq 1, length 64
+01:15:11.060818 IP 10.0.0.14 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3492, seq 1, length 64
+01:15:11.064198 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.15: ICMP echo request, id 3493, seq 1, length 64
+01:15:11.064813 IP 10.0.0.15 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3493, seq 1, length 64
+01:15:11.068235 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.16: ICMP echo request, id 3494, seq 1, length 64
+01:15:11.068733 IP 10.0.0.16 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo reply, id 3494, seq 1, length 64
+01:15:11.079104 IP daisy.university.harvard.edu > uismhlpt401301e.university.harvard.edu: ICMP echo request, id 3496, seq 1, length 64
+01:15:11.079308 IP uismhlpt401301e.university.harvard.edu > daisy.university.harvard.edu: ICMP echo reply, id 3496, seq 1, length 64
+01:15:11.082971 IP daisy.university.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo request, id 3497, seq 1, length 64
+01:15:11.083145 IP divwhlpt1048016.university.harvard.edu > daisy.university.harvard.edu: ICMP echo reply, id 3497, seq 1, length 64
+01:15:11.086414 IP daisy.university.harvard.edu > 10.0.0.5: ICMP echo request, id 3498, seq 1, length 64
+01:15:11.086786 IP 10.0.0.5 > daisy.university.harvard.edu: ICMP echo reply, id 3498, seq 1, length 64
+01:15:11.090392 IP daisy.university.harvard.edu > 10.0.0.6: ICMP echo request, id 3499, seq 1, length 64
+01:15:11.090471 IP 10.0.0.6 > daisy.university.harvard.edu: ICMP echo reply, id 3499, seq 1, length 64
+01:15:11.093734 IP daisy.university.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo request, id 3500, seq 1, length 64
+01:15:11.093812 IP hrewhlpt2100046.university.harvard.edu > daisy.university.harvard.edu: ICMP echo reply, id 3500, seq 1, length 64
+01:15:11.097249 IP daisy.university.harvard.edu > 10.0.0.8: ICMP echo request, id 3501, seq 1, length 64
+01:15:11.097307 IP 10.0.0.8 > daisy.university.harvard.edu: ICMP echo reply, id 3501, seq 1, length 64
+01:15:11.100840 IP daisy.university.harvard.edu > 10.0.0.9: ICMP echo request, id 3502, seq 1, length 64
+01:15:11.101189 IP 10.0.0.9 > daisy.university.harvard.edu: ICMP echo reply, id 3502, seq 1, length 64
+01:15:11.104757 IP daisy.university.harvard.edu > 10.0.0.10: ICMP echo request, id 3503, seq 1, length 64
+01:15:11.104860 IP 10.0.0.10 > daisy.university.harvard.edu: ICMP echo reply, id 3503, seq 1, length 64
+01:15:11.108331 IP daisy.university.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo request, id 3504, seq 1, length 64
+01:15:11.108392 IP divmhlpt104804e.university.harvard.edu > daisy.university.harvard.edu: ICMP echo reply, id 3504, seq 1, length 64
+01:15:11.116756 IP daisy.university.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo request, id 3505, seq 1, length 64
+01:15:11.116834 IP iniwhwks3292009.university.harvard.edu > daisy.university.harvard.edu: ICMP echo reply, id 3505, seq 1, length 64
+01:15:11.120328 IP daisy.university.harvard.edu > 10.0.0.13: ICMP echo request, id 3506, seq 1, length 64
+01:15:11.120614 IP 10.0.0.13 > daisy.university.harvard.edu: ICMP echo reply, id 3506, seq 1, length 64
+01:15:11.124225 IP daisy.university.harvard.edu > 10.0.0.14: ICMP echo request, id 3507, seq 1, length 64
+01:15:11.124308 IP 10.0.0.14 > daisy.university.harvard.edu: ICMP echo reply, id 3507, seq 1, length 64
+01:15:11.127554 IP daisy.university.harvard.edu > 10.0.0.15: ICMP echo request, id 3508, seq 1, length 64
+01:15:11.127620 IP 10.0.0.15 > daisy.university.harvard.edu: ICMP echo reply, id 3508, seq 1, length 64
+01:15:11.131033 IP daisy.university.harvard.edu > 10.0.0.16: ICMP echo request, id 3509, seq 1, length 64
+01:15:11.131094 IP 10.0.0.16 > daisy.university.harvard.edu: ICMP echo reply, id 3509, seq 1, length 64
+01:15:11.138372 IP uismhlpt401301e.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3510, seq 1, length 64
+01:15:11.138408 IP taubman-3s-sw1-vl-1.net.harvard.edu > uismhlpt401301e.university.harvard.edu: ICMP echo reply, id 3510, seq 1, length 64
+01:15:11.142549 IP uismhlpt401301e.university.harvard.edu > daisy.university.harvard.edu: ICMP echo request, id 3511, seq 1, length 64
+01:15:11.142581 IP daisy.university.harvard.edu > uismhlpt401301e.university.harvard.edu: ICMP echo reply, id 3511, seq 1, length 64
+01:15:11.206886 IP divwhlpt1048016.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3525, seq 1, length 64
+01:15:11.206909 IP taubman-3s-sw1-vl-1.net.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo reply, id 3525, seq 1, length 64
+01:15:11.210101 IP divwhlpt1048016.university.harvard.edu > daisy.university.harvard.edu: ICMP echo request, id 3526, seq 1, length 64
+01:15:11.210131 IP daisy.university.harvard.edu > divwhlpt1048016.university.harvard.edu: ICMP echo reply, id 3526, seq 1, length 64
+01:15:11.260895 IP 10.0.0.5 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3540, seq 1, length 64
+01:15:11.260918 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.5: ICMP echo reply, id 3540, seq 1, length 64
+01:15:11.264309 IP 10.0.0.5 > daisy.university.harvard.edu: ICMP echo request, id 3541, seq 1, length 64
+01:15:11.264333 IP daisy.university.harvard.edu > 10.0.0.5: ICMP echo reply, id 3541, seq 1, length 64
+01:15:11.319203 IP 10.0.0.6 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3555, seq 1, length 64
+01:15:11.319225 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.6: ICMP echo reply, id 3555, seq 1, length 64
+01:15:11.322649 IP 10.0.0.6 > daisy.university.harvard.edu: ICMP echo request, id 3556, seq 1, length 64
+01:15:11.322672 IP daisy.university.harvard.edu > 10.0.0.6: ICMP echo reply, id 3556, seq 1, length 64
+01:15:11.372828 IP hrewhlpt2100046.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3570, seq 1, length 64
+01:15:11.372854 IP taubman-3s-sw1-vl-1.net.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo reply, id 3570, seq 1, length 64
+01:15:11.376405 IP hrewhlpt2100046.university.harvard.edu > daisy.university.harvard.edu: ICMP echo request, id 3571, seq 1, length 64
+01:15:11.376437 IP daisy.university.harvard.edu > hrewhlpt2100046.university.harvard.edu: ICMP echo reply, id 3571, seq 1, length 64
+01:15:11.431844 IP 10.0.0.8 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3585, seq 1, length 64
+01:15:11.431867 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.8: ICMP echo reply, id 3585, seq 1, length 64
+01:15:11.435184 IP 10.0.0.8 > daisy.university.harvard.edu: ICMP echo request, id 3586, seq 1, length 64
+01:15:11.435211 IP daisy.university.harvard.edu > 10.0.0.8: ICMP echo reply, id 3586, seq 1, length 64
+01:15:11.488060 IP 10.0.0.9 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3600, seq 1, length 64
+01:15:11.488085 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.9: ICMP echo reply, id 3600, seq 1, length 64
+01:15:11.491691 IP 10.0.0.9 > daisy.university.harvard.edu: ICMP echo request, id 3601, seq 1, length 64
+01:15:11.491716 IP daisy.university.harvard.edu > 10.0.0.9: ICMP echo reply, id 3601, seq 1, length 64
+01:15:11.546841 IP 10.0.0.10 > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3615, seq 1, length 64
+01:15:11.546864 IP taubman-3s-sw1-vl-1.net.harvard.edu > 10.0.0.10: ICMP echo reply, id 3615, seq 1, length 64
+01:15:11.550215 IP 10.0.0.10 > daisy.university.harvard.edu: ICMP echo request, id 3616, seq 1, length 64
+01:15:11.550245 IP daisy.university.harvard.edu > 10.0.0.10: ICMP echo reply, id 3616, seq 1, length 64
+01:15:11.602264 IP divmhlpt104804e.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3630, seq 1, length 64
+01:15:11.602286 IP taubman-3s-sw1-vl-1.net.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 3630, seq 1, length 64
+01:15:11.605543 IP divmhlpt104804e.university.harvard.edu > daisy.university.harvard.edu: ICMP echo request, id 3631, seq 1, length 64
+01:15:11.605567 IP daisy.university.harvard.edu > divmhlpt104804e.university.harvard.edu: ICMP echo reply, id 3631, seq 1, length 64
+01:15:11.656086 IP iniwhwks3292009.university.harvard.edu > taubman-3s-sw1-vl-1.net.harvard.edu: ICMP echo request, id 3645, seq 1, length 64
+01:15:11.656115 IP taubman-3s-sw1-vl-1.net.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 3645, seq 1, length 64
+01:15:11.659670 IP iniwhwks3292009.university.harvard.edu > daisy.university.harvard.edu: ICMP echo request, id 3646, seq 1, length 64
+01:15:11.659698 IP daisy.university.harvard.edu > iniwhwks3292009.university.harvard.edu: ICMP echo reply, id 3646, seq 1, length 64
+01:15:11.713736 IP 10.0.0.13 > taubman-3s-sw1-vl-1.net.harvard.e
