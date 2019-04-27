@@ -26,7 +26,7 @@ fileAndLinks = [(open(f"Logs/{link}.txt", "w+"), link) for link in links]
 # command = 'mount -t vboxsf myfolder /home/mininet/netVis'
 # p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
 
-processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link],
+processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', '-tt', link],
                               stdout=fileObj,
                               stderr=subprocess.STDOUT) for (fileObj, link) in fileAndLinks]
 
