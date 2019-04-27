@@ -120,7 +120,7 @@ for (let i = 0; i < 16; i++) {
 for (let i = 0; i < 4; i++) {
   let path = new Path();
   path.strokeColor = "black";
-  path.data.heat = 0;
+  path.data.heat = 10000;
   path.moveTo(new Point(getHeightSwX(2 * i), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -131,7 +131,7 @@ for (let i = 0; i < 4; i++) {
   linkA.push(path);
   path = new Path();
   path.strokeColor = "black";
-  path.data.heat = 0;
+  path.data.heat = 10000;
   path.moveTo(new Point(getHeightSwX(2 * i + 1), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -142,7 +142,7 @@ for (let i = 0; i < 4; i++) {
   linkA.push(path);
   path = new Path();
   path.strokeColor = "black";
-  path.data.heat = 0;
+  path.data.heat = 10000;
   path.moveTo(new Point(getHeightSwX(2 * i), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -153,7 +153,7 @@ for (let i = 0; i < 4; i++) {
   linkA.push(path);
   path = new Path();
   path.strokeColor = "black";
-  path.data.heat = 0;
+  path.data.heat = 10000;
   path.moveTo(new Point(getHeightSwX(2 * i + 1), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -170,7 +170,7 @@ for (let i = 0; i < 4; i++) {
   for (let k = 0; k < 8; k += 2) {
     let path = new Path();
     path.strokeColor = "black";
-    path.data.heat = 0;
+    path.data.heat = 10000;
     path.moveTo(
       new Point(
         getHeightSwX(2 * i) * 0.5 + getHeightSwX(2 * i + 1) * 0.5,
@@ -198,32 +198,46 @@ document.getElementById("import").onclick = function() {
   let fr = new FileReader();
 
   fr.onload = function(e) {
-    console.log(e);
+    // console.log(e);
     let result = JSON.parse(e.target.result);
-    jsonLogs = result;
+    jsonLogs = result.slice(2);
     firstLogTime = jsonLogs[0].timestamp;
-    let formatted = JSON.stringify(result, null, 2);
-    document.getElementById("result").value = formatted;
+    // let formatted = JSON.stringify(result, null, 2);
+    // document.getElementById("result").value = formatted;
   };
 
   fr.readAsText(files.item(0));
 };
-let bytesPerPacket = 64; // Assumption
-let maxCapacity = 1e9; // 10GB
-let maxHeat = maxCapacity / bytesPerPacket;
 
-function processLog(log, mode) {
+// TODO extract lenth and ip's from log
+let bytesPerPacket = 64; // Assumption
+let bitsPerpacket = bytesPerPacket * 8;
+let maxCapacityMb = 1e7; // 10Mb
+let maxHeat = maxCapacityMb / bitsPerpacket;
+// let fudgeFactor = 10000000;
+function processLog(log, delta, mode) {
   switch (mode) {
     case "thermal":
       let swNum = parseInt(log.swName);
       let port = parseInt(log.port);
       let linkIndex = getLinkIndex(swNum, port);
       let linkPath = linkA[linkIndex];
-      linkPath.data.heat += 1;
-      let congestion = linkPath.data.heat / maxHeat;
-      debugger;
-      console.log(congestion);
-      console.log(congestion - 1);
+      if (!linkPath.data.lastPacketTime) {
+        linkPath.data.lastPacketTime = log.timestamp;
+        break;
+      }
+      let packetDelta = log.timestamp - linkPath.data.lastPacketTime;
+      linkPath.data.lastPacketTime = log.timestamp;
+      // decay factor
+      let beta = 0.2;
+      linkPath.data.heat = beta * packetDelta + (1 - beta) * linkPath.data.heat;
+      let totalBits = linkPath.data.heat * bitsPerpacket;
+      let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
+      if (congestion > 1) {
+        console.log(congestion);
+      }
+      // console.log(congestion);
+      // debugger;
       linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
       break;
   }
@@ -236,14 +250,14 @@ function toUnix(timestamp) {
   return new Date(timestamp);
 }
 
-function decayLinks() {
-  let alpha = 0.95;
-  for (let link of linkA) {
-    link.data.heat *= alpha;
-  }
-}
+// function decayLinks(delta) {
+//   let alpha = 0 / slowDown;
+//   for (let link of linkA) {
+//     link.data.heat = alpha * delta + (1 - alpha * delta) * link.data.heat;
+//   }
+// }
 
-var slowDown = 100;
+var slowDown = 1;
 
 var animationStartTime = null;
 view.onFrame = function onFrame(event) {
@@ -253,7 +267,7 @@ view.onFrame = function onFrame(event) {
   // console.log(event.time);
   // The total amount of time passed since
   // the first frame event in seconds:
-  let time = event.time;
+  let time = event.time * (1 / slowDown);
   // The time passed in seconds since the last frame event:
   let delta = event.delta;
   // console.log(time, delta);
@@ -262,13 +276,21 @@ view.onFrame = function onFrame(event) {
   }
 
   // iterate from nextLogIndex until hitting a log whose timestamp exceeds time
-  decayLinks();
-  for (
-    ;
-    jsonLogs[nextLogIndex].timestamp - firstLogTime + animationStartTime < time;
-    nextLogIndex++
-  ) {
-    console.log("processing logs" + nextLogIndex);
-    processLog(jsonLogs[nextLogIndex], "thermal");
+  // decayLinks(delta);
+  shouldContinue = true;
+  while (shouldContinue && nextLogIndex < jsonLogs.length) {
+    // console.log("firstlogtime", firstLogTime);
+    // console.log("animation start time", animationStartTime);
+    // console.log("next timestamp", jsonLogs[nextLogIndex + 1].timestamp);
+    // // debugger;
+    // console.log("processing logs" + nextLogIndex);
+    processLog(jsonLogs[nextLogIndex], delta, "thermal");
+    while (jsonLogs[nextLogIndex].timestamp < 1e9) {
+      nextLogIndex++;
+    }
+    shouldContinue =
+      jsonLogs[nextLogIndex].timestamp - firstLogTime + animationStartTime <
+      time;
+    nextLogIndex++;
   }
 };
