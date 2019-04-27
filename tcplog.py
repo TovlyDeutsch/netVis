@@ -27,7 +27,8 @@ fileAndLinks = [(open(f"Logs/{link}.txt", "w+"), link) for link in links]
 # p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
 
 processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-tt', '-n', 'not',  'arp'],
-                              stdout=fileObj) for (fileObj, link) in fileAndLinks]
+                              stdout=fileObj,
+                              stderr=subprocess.STDOUT) for (fileObj, link) in fileAndLinks]
 
 input("Press Enter to stop logging")
 for process in processes:
@@ -43,7 +44,7 @@ for (fileObj, link) in fileAndLinks:
 
     # read
     for line in fileObj:
-      print(line)
+      # print(line)
       # regex
       greppedLine = re.search("^(\d+\.\d+) IP ", line)
       if not greppedLine:
