@@ -53,7 +53,7 @@ for (fileObj, link) in fileAndLinks:
       obj = {
         'swName': swName,
         "port": port,
-        "timestamp": greppedLine.group(1)
+        "timestamp": float(greppedLine.group(1))
       }
       logList.append(obj)
 
