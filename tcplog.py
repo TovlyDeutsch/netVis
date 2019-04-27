@@ -26,11 +26,11 @@ fileAndLinks = [(open(f"Logs/{link}.txt", "w+"), link) for link in links]
 # command = 'mount -t vboxsf myfolder /home/mininet/netVis'
 # p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
 
-processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', '-tt', link],
+processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-tt', '-n', 'not',  'arp'],
                               stdout=fileObj,
                               stderr=subprocess.STDOUT) for (fileObj, link) in fileAndLinks]
 
-input("Press Enter to continue...")
+input("Press Enter to stop logging")
 for process in processes:
   process.kill()
 
@@ -46,7 +46,7 @@ for (fileObj, link) in fileAndLinks:
     for line in fileObj:
       print(line)
       # regex
-      greppedLine = re.search("^(\d{2}:\d{2}:\d{2}\.\d+) IP ", line)
+      greppedLine = re.search("^(\d+\.\d+) IP ", line)
       if not greppedLine:
         continue
 
