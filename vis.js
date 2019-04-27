@@ -36,7 +36,12 @@ function getLinkIndex(sw, port) {
   if (port <= 2) {
     return sw * 2 - 3 + port;
   } else {
-    return;
+    return (
+      16 +
+      (8 * ((sw + 1) % 2) +
+        4 * ((port + 1) % 2) +
+        (sw - 1 - ((sw - 1) % 2)) / 2)
+    );
   }
 }
 
@@ -115,6 +120,7 @@ for (let i = 0; i < 16; i++) {
 for (let i = 0; i < 4; i++) {
   let path = new Path();
   path.strokeColor = "black";
+  path.data.heat = 0;
   path.moveTo(new Point(getHeightSwX(2 * i), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -125,16 +131,7 @@ for (let i = 0; i < 4; i++) {
   linkA.push(path);
   path = new Path();
   path.strokeColor = "black";
-  path.moveTo(new Point(getHeightSwX(2 * i), startHeight - layer1Gap));
-  path.lineTo(
-    new Point(
-      getHeightSwX(2 * i + 1),
-      startHeight - layer1Gap - layer2Gap + switchSize
-    )
-  );
-  linkA.push(path);
-  path = new Path();
-  path.strokeColor = "black";
+  path.data.heat = 0;
   path.moveTo(new Point(getHeightSwX(2 * i + 1), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -145,6 +142,18 @@ for (let i = 0; i < 4; i++) {
   linkA.push(path);
   path = new Path();
   path.strokeColor = "black";
+  path.data.heat = 0;
+  path.moveTo(new Point(getHeightSwX(2 * i), startHeight - layer1Gap));
+  path.lineTo(
+    new Point(
+      getHeightSwX(2 * i + 1),
+      startHeight - layer1Gap - layer2Gap + switchSize
+    )
+  );
+  linkA.push(path);
+  path = new Path();
+  path.strokeColor = "black";
+  path.data.heat = 0;
   path.moveTo(new Point(getHeightSwX(2 * i + 1), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -161,6 +170,7 @@ for (let i = 0; i < 4; i++) {
   for (let k = 0; k < 8; k += 2) {
     let path = new Path();
     path.strokeColor = "black";
+    path.data.heat = 0;
     path.moveTo(
       new Point(
         getHeightSwX(2 * i) * 0.5 + getHeightSwX(2 * i + 1) * 0.5,
@@ -191,7 +201,7 @@ document.getElementById("import").onclick = function() {
     console.log(e);
     let result = JSON.parse(e.target.result);
     jsonLogs = result;
-    firstLogTime = new Date(jsonLogs[0].timestamp);
+    firstLogTime = jsonLogs[0].timestamp;
     let formatted = JSON.stringify(result, null, 2);
     document.getElementById("result").value = formatted;
   };
@@ -211,6 +221,9 @@ function processLog(log, mode) {
       let linkPath = linkA[linkIndex];
       linkPath.data.heat += 1;
       let congestion = linkPath.data.heat / maxHeat;
+      debugger;
+      console.log(congestion);
+      console.log(congestion - 1);
       linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
       break;
   }
@@ -230,11 +243,14 @@ function decayLinks() {
   }
 }
 
+var slowDown = 100;
+
 var animationStartTime = null;
-function onFrame(event) {
+view.onFrame = function onFrame(event) {
   if (jsonLogs === null) {
     return;
   }
+  // console.log(event.time);
   // The total amount of time passed since
   // the first frame event in seconds:
   let time = event.time;
@@ -249,12 +265,10 @@ function onFrame(event) {
   decayLinks();
   for (
     ;
-    new Date(jsonLogs[nextLogIndex].timestamp) -
-      firstLogTime +
-      animationStartTime <
-    time;
+    jsonLogs[nextLogIndex].timestamp - firstLogTime + animationStartTime < time;
     nextLogIndex++
   ) {
+    console.log("processing logs" + nextLogIndex);
     processLog(jsonLogs[nextLogIndex], "thermal");
   }
-}
+};
