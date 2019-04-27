@@ -27,8 +27,7 @@ fileAndLinks = [(open(f"Logs/{link}.txt", "w+"), link) for link in links]
 # p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
 
 processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-tt', '-n', 'not',  'arp'],
-                              stdout=fileObj,
-                              stderr=subprocess.STDOUT) for (fileObj, link) in fileAndLinks]
+                              stdout=fileObj) for (fileObj, link) in fileAndLinks]
 
 input("Press Enter to stop logging")
 for process in processes:
