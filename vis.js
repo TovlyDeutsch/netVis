@@ -242,7 +242,6 @@ let bytesPerPacket = 64; // Assumption
 let bitsPerpacket = bytesPerPacket * 8;
 let maxCapacityMb = 1e7; // 10Mb
 let maxHeat = maxCapacityMb / bitsPerpacket;
-// let fudgeFactor = 10000000;
 function processLog(log, delta, mode) {
   switch (mode) {
     case "thermal":
@@ -264,8 +263,6 @@ function processLog(log, delta, mode) {
       if (congestion > 1) {
         // console.log(congestion);
       }
-      // console.log(congestion);
-      // debugger;
       linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
       break;
   }
@@ -278,62 +275,66 @@ function toUnix(timestamp) {
   return new Date(timestamp);
 }
 
-// function decayLinks(delta) {
-//   let alpha = 0 / slowDown;
-//   for (let link of linkA) {
-//     link.data.heat = alpha * delta + (1 - alpha * delta) * link.data.heat;
-//   }
-// }
-
-var slowDown = 20;
+let slowDown = 200;
 let timelineVal = 0;
-let globalTime = null;
-
 let animationStartTime = null;
-view.onFrame = function onFrame(event) {
-  // The total amount of time passed since
-  // the first frame event in seconds:
-  let time = event.time;
-  globalTime = time;
-  let scaledTime = time / slowDown;
-  // The time passed in seconds since the last frame event
-  let delta = event.delta;
 
+view.onFrame = function onFrame(event) {
   if (jsonLogs === null) {
     return;
   }
-  console.log(`nextlogindex ${nextLogIndex}`);
-  var timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime; // better var name?
+
+  // The total amount of time passed since
+  // the first frame event in seconds:
+  let time = event.time;
+  let delta = event.delta; // The time passed in seconds since the last frame event
+  let scaledTime = time / slowDown;
+
+  // var timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime; // better var name?
+
   if (animationStartTime === null) {
     animationStartTime = time;
   }
-  if (nextLogIndex === 0) {
-    var shouldContinue = true;
-  } else {
-    // console.log(`first log time ${firstLogTime}`);
-    // console.log(`timeFromFirstLog ${timeFromFirstLog}`);
-    // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
-    // console.log(`starttime ${animationStartTime}`);
-    console.log(`scaledTime ${scaledTime}`);
+  let scaledAnimationStart = animationStartTime / slowDown;
 
-    var shouldContinue = timeFromFirstLog < scaledTime;
-  }
+  // if (nextLogIndex === 0) {
+  //   var shouldContinue = true;
+  // } else {
+  // console.log(`first log time ${firstLogTime}`);
+  console.log(
+    `timeFromFirstLog ${jsonLogs[nextLogIndex].timestamp - firstLogTime}`
+  );
+  // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
+  console.log(`Scaled starttime ${scaledAnimationStart}`);
+  console.log(`Scaled time ${scaledTime}`);
+  //   console.log(`scaledTime ${scaledTime}`);
+  //   var shouldContinue = timeFromFirstLog + scaledAnimationStart < scaledTime;
+  // }
 
   // iterate from nextLogIndex until hitting a log whose timestamp exceeds scaledTime
   // TODO refactor so we don't have these reapeated lines
-
-  while (shouldContinue && nextLogIndex < jsonLogs.length - 2) {
+  for (
+    ;
+    (jsonLogs[nextLogIndex].timestamp - firstLogTime + scaledAnimationStart <
+      scaledTime ||
+      nextLogIndex === 0) &&
+    nextLogIndex < jsonLogs.length;
+    nextLogIndex++
+  ) {
     processLog(jsonLogs[nextLogIndex], delta, "thermal");
     // while (jsonLogs[nextLogIndex].timestamp < 1e9) {
     //   nextLogIndex++;
     // }
-    timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime;
-    shouldContinue = timeFromFirstLog + animationStartTime < scaledTime;
+    // timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime;
+    // shouldContinue = timeFromFirstLog + scaledAnimationStart < scaledTime;
     // console.log(`first log time ${firstLogTime}`);
     // console.log(`next log index  in while${nextLogIndex}`);
     // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
-    // console.log(timeFromFirstLog, animationStartTime, scaledTime);
-    nextLogIndex++;
+    // console.log(
+    //   jsonLogs[nextLogIndex].timestamp - firstLogTime,
+    //   animationStartTime,
+    //   scaledTime
+    // );
   }
 };
 
