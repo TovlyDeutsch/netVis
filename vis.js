@@ -184,9 +184,24 @@ for (let i = 0; i < 4; i++) {
   }
 }
 
+function trimJsonEnds(jsonLogs) {
+  function findMaxDiff(x, i) {
+    let maxDiff = 60;
+    if (typeof jsonLogs[i + 1] != "undefined") {
+      return jsonLogs[i + 1].timestamp - x.timestamp > maxDiff;
+    }
+  }
+  let startIndex = jsonLogs.findIndex(findMaxDiff);
+  let endIndex = jsonLogs.reverse().findIndex(findMaxDiff);
+  console.log(startIndex, endIndex);
+  return jsonLogs.slice(startIndex, endIndex);
+}
+
 let jsonLogs = null;
 let nextLogIndex = 0;
 let firstLogTime = null;
+let lastLogTime = null;
+let totalTimeRecorded = null;
 
 document.getElementById("import").onclick = function() {
   let files = document.getElementById("selectFiles").files;
@@ -200,8 +215,10 @@ document.getElementById("import").onclick = function() {
   fr.onload = function(e) {
     // console.log(e);
     let result = JSON.parse(e.target.result);
-    jsonLogs = result.slice(2);
-    firstLogTime = jsonLogs[2].timestamp;
+    jsonLogs = trimJsonEnds(result);
+    firstLogTime = jsonLogs[0].timestamp;
+    lastLogTime = jsonLogs[jsonLogs.length - 1].timestamp;
+    totalTimeRecorded = lastLogTime - firstLogTime;
     // let formatted = JSON.stringify(result, null, 2);
     // document.getElementById("result").value = formatted;
   };
@@ -295,9 +312,9 @@ view.onFrame = function onFrame(event) {
     }
     timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime;
     shouldContinue = timeFromFirstLog + animationStartTime < scaledTime;
-    console.log(`first log time ${firstLogTime}`);
-    console.log(`next log index ${nextLogIndex}`);
-    console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
+    // console.log(`first log time ${firstLogTime}`);
+    // console.log(`next log index ${nextLogIndex}`);
+    // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
     console.log(timeFromFirstLog, animationStartTime, scaledTime);
     nextLogIndex++;
   }
@@ -306,7 +323,12 @@ view.onFrame = function onFrame(event) {
 // const selectElement = document.querySelector("#seek-bar");
 
 // selectElement.addEventListener("change", event => {
-//   timelineVal = event.target.value;
-//   console.log(timelineVal);
-//   animationStartTime = globalTime - timelineVal;
+//   portionRun = event.target.value / 100;
+//   secondsFromFirstLog = portionRun * totalTimeRecorded;
+//   console.log(`secondsFromFirstLog ${secondsFromFirstLog}`);
+//   nextLogIndex = jsonLogs.findIndex(
+//     x => x.timestamp - firstLogTime > secondsFromFirstLog
+//   );
+//   console.log(`nextLogIndex ${nextLogIndex}`);
+//   animationStartTime = globalTime - secondsFromFirstLog;
 // });
