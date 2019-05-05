@@ -218,6 +218,7 @@ let paused = true;
 const playButton = document.querySelector("#play-pause");
 const restartButton = document.querySelector("#restart");
 const statusText = document.querySelector("#status");
+const speedSlider = document.querySelector("#speed");
 
 let jsonLogs = null;
 let nextLogIndex = 0;
@@ -225,9 +226,16 @@ let firstLogTime = null;
 let lastLogTime = null;
 let totalTimeRecorded = null;
 let animationStartTime = null;
-let slowDown = 2;
+let slowDown = 1;
 let timelineVal = 0;
 let pausedTime = 0;
+let currentTime = 0;
+// let playedTime = 0;
+
+speedSlider.addEventListener("change", () => {
+  slowDown = event.target.value;
+  console.log(slowDown);
+});
 
 document.querySelector("#selectFiles").addEventListener("change", () => {
   // let files = document.getElementById("selectFiles").files;
@@ -255,6 +263,7 @@ document.querySelector("#selectFiles").addEventListener("change", () => {
     restartButton.addEventListener("click", event => {
       animationStartTime = null;
       nextLogIndex = 0;
+      currentTime = 0;
       setLinksToBlack();
     });
     playButton.disabled = false;
@@ -303,17 +312,19 @@ view.onFrame = function onFrame(event) {
   // The total amount of time passed since
   // the first frame event in seconds:
   let time = event.time;
-  let playedTime = time - pausedTime;
+  // let playedTime = time - pausedTime;
   let delta = event.delta; // The time passed in seconds since the last frame event
-  let scaledTime = time / slowDown;
-  let scaledPlayedTime = playedTime / slowDown;
-  if (animationStartTime === null) {
-    animationStartTime = time;
-  }
-  let scaledAnimationStart = animationStartTime / slowDown;
+  // let scaledTime = time / slowDown;
+  // let scaledPlayedTime = playedTime / slowDown;
+  // if (animationStartTime === null) {
+  //   animationStartTime = time;
+  // }
+  // let scaledAnimationStart = animationStartTime / slowDown;
   if (paused) {
     pausedTime += delta;
     return;
+  } else {
+    currentTime += delta / slowDown;
   }
 
   // console.log(`first log time ${firstLogTime}`);
@@ -323,15 +334,15 @@ view.onFrame = function onFrame(event) {
   // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
   // console.log(`Scaled starttime ${scaledAnimationStart}`);
   // console.log(`Scaled time ${scaledTime}`);
+  console.log(`current time ${currentTime}`);
 
   for (
     ;
-    (jsonLogs[nextLogIndex].timestamp - firstLogTime + scaledAnimationStart <
-      scaledPlayedTime ||
+    (jsonLogs[nextLogIndex].timestamp - firstLogTime < currentTime ||
       nextLogIndex === 0) &&
     nextLogIndex < jsonLogs.length;
     nextLogIndex++
   ) {
-    processLog(jsonLogs[nextLogIndex], delta, "thermal");
+    processLog(jsonLogs[nextLogIndex], delta / slowDown, "thermal");
   }
 };

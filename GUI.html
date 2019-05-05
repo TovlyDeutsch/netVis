@@ -31,6 +31,14 @@
         margin-bottom: 16px;
         font-family: sans-serif;
       }
+      #slowdown {
+        display: inline-block;
+        text-align: center;
+        margin-left: 24px;
+      }
+      #slowdown label {
+        display: block;
+      }
     </style>
   </head>
 
@@ -42,7 +50,19 @@
       <div id="video-controls">
         <button type="button" id="play-pause" disabled>Play</button>
         <button type="button" id="restart" disabled>Restart</button>
-        <!-- <input type="range" id="seek-bar" value="0" /> -->
+        <div id="slowdown">
+          <input
+            type="range"
+            name="speed"
+            id="speed"
+            value="1"
+            min="1"
+            max="1000"
+          />
+          <label for="speed"
+            >Slowdown factor (x times slower than real time)</label
+          >
+        </div>
       </div>
     </div>
 
