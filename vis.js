@@ -186,7 +186,6 @@ for (let i = 0; i < 4; i++) {
 
 function setLinksToBlack() {
   for (linkPath of linkA.concat(linkH)) {
-    console.log("hre");
     linkPath.data.heat = 10000;
     linkPath.strokeColor = "black";
   }
@@ -197,7 +196,6 @@ function trimJsonEnds(jsonLogs) {
     let minDiff = 60;
     let maxDiff = 5000;
     if (typeof jsonLogs[i + 1] != "undefined") {
-      // console.log(jsonLogs[i + 1].timestamp, x.timestamp);
       let diff = Math.abs(jsonLogs[i + 1].timestamp - x.timestamp);
       return diff > minDiff && diff < maxDiff;
     } else {
@@ -212,7 +210,7 @@ function trimJsonEnds(jsonLogs) {
       .slice()
       .reverse()
       .findIndex(findMaxDiff);
-  console.log(startIndex, endIndex);
+  // console.log(startIndex, endIndex);
   return jsonLogs.slice(startIndex + 1, endIndex - 1);
 }
 
@@ -232,7 +230,6 @@ let pausedTime = 0;
 
 document.getElementById("import").onclick = function() {
   let files = document.getElementById("selectFiles").files;
-  // console.log(files);
   if (files.length <= 0) {
     return false;
   }
@@ -329,15 +326,5 @@ view.onFrame = function onFrame(event) {
     nextLogIndex++
   ) {
     processLog(jsonLogs[nextLogIndex], delta, "thermal");
-    // timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime;
-    // shouldContinue = timeFromFirstLog + scaledAnimationStart < scaledTime;
-    // console.log(`first log time ${firstLogTime}`);
-    // console.log(`next log index  in while${nextLogIndex}`);
-    // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
-    // console.log(
-    //   jsonLogs[nextLogIndex].timestamp - firstLogTime,
-    //   animationStartTime,
-    //   scaledTime
-    // );
   }
 };
