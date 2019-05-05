@@ -186,13 +186,24 @@ for (let i = 0; i < 4; i++) {
 
 function trimJsonEnds(jsonLogs) {
   function findMaxDiff(x, i) {
-    let maxDiff = 60;
+    let minDiff = 60;
+    let maxDiff = 5000;
     if (typeof jsonLogs[i + 1] != "undefined") {
-      return jsonLogs[i + 1].timestamp - x.timestamp > maxDiff;
+      // console.log(jsonLogs[i + 1].timestamp, x.timestamp);
+      let diff = Math.abs(jsonLogs[i + 1].timestamp - x.timestamp);
+      return diff > minDiff && diff < maxDiff;
+    } else {
+      false;
     }
   }
   let startIndex = jsonLogs.findIndex(findMaxDiff);
-  let endIndex = jsonLogs.reverse().findIndex(findMaxDiff);
+  let endIndex =
+    jsonLogs.length -
+    1 -
+    jsonLogs
+      .slice()
+      .reverse()
+      .findIndex(findMaxDiff);
   console.log(startIndex, endIndex);
   return jsonLogs.slice(startIndex, endIndex);
 }
@@ -205,7 +216,7 @@ let totalTimeRecorded = null;
 
 document.getElementById("import").onclick = function() {
   let files = document.getElementById("selectFiles").files;
-  console.log(files);
+  // console.log(files);
   if (files.length <= 0) {
     return false;
   }
@@ -251,7 +262,7 @@ function processLog(log, delta, mode) {
       let totalBits = linkPath.data.heat * bitsPerpacket;
       let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
       if (congestion > 1) {
-        console.log(congestion);
+        // console.log(congestion);
       }
       // console.log(congestion);
       // debugger;
@@ -291,7 +302,7 @@ view.onFrame = function onFrame(event) {
   if (jsonLogs === null) {
     return;
   }
-
+  console.log(`nextlogindex ${nextLogIndex}`);
   var timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime; // better var name?
   if (animationStartTime === null) {
     animationStartTime = time;
@@ -307,14 +318,14 @@ view.onFrame = function onFrame(event) {
 
   while (shouldContinue && nextLogIndex < jsonLogs.length) {
     processLog(jsonLogs[nextLogIndex], delta, "thermal");
-    while (jsonLogs[nextLogIndex].timestamp < 1e9) {
-      nextLogIndex++;
-    }
+    // while (jsonLogs[nextLogIndex].timestamp < 1e9) {
+    //   nextLogIndex++;
+    // }
     timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime;
     shouldContinue = timeFromFirstLog + animationStartTime < scaledTime;
-    // console.log(`first log time ${firstLogTime}`);
-    // console.log(`next log index ${nextLogIndex}`);
-    // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
+    console.log(`first log time ${firstLogTime}`);
+    console.log(`next log index ${nextLogIndex}`);
+    console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
     console.log(timeFromFirstLog, animationStartTime, scaledTime);
     nextLogIndex++;
   }
