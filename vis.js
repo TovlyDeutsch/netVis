@@ -208,6 +208,9 @@ function trimJsonEnds(jsonLogs) {
   return jsonLogs.slice(startIndex + 1, endIndex - 1);
 }
 
+let paused = true;
+const playButton = document.querySelector("#play-pause");
+
 let jsonLogs = null;
 let nextLogIndex = 0;
 let firstLogTime = null;
@@ -224,14 +227,17 @@ document.getElementById("import").onclick = function() {
   let fr = new FileReader();
 
   fr.onload = function(e) {
-    // console.log(e);
     let result = JSON.parse(e.target.result);
     jsonLogs = trimJsonEnds(result);
     firstLogTime = jsonLogs[0].timestamp;
     lastLogTime = jsonLogs[jsonLogs.length - 1].timestamp;
     totalTimeRecorded = lastLogTime - firstLogTime;
-    // let formatted = JSON.stringify(result, null, 2);
-    // document.getElementById("result").value = formatted;
+    playButton.disabled = false;
+    playButton.addEventListener("click", event => {
+      paused = !paused;
+      playButton.innerHTML = paused ? "Play" : "Pause";
+      console.log("clicked");
+    });
   };
 
   fr.readAsText(files.item(0));
@@ -275,56 +281,48 @@ function toUnix(timestamp) {
   return new Date(timestamp);
 }
 
-let slowDown = 200;
+let slowDown = 100;
 let timelineVal = 0;
 let animationStartTime = null;
+let pausedTime = 0;
 
 view.onFrame = function onFrame(event) {
   if (jsonLogs === null) {
     return;
   }
-
   // The total amount of time passed since
   // the first frame event in seconds:
   let time = event.time;
+  let playedTime = time - pausedTime;
   let delta = event.delta; // The time passed in seconds since the last frame event
   let scaledTime = time / slowDown;
-
-  // var timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime; // better var name?
-
+  let scaledPlayedTime = playedTime / slowDown;
   if (animationStartTime === null) {
     animationStartTime = time;
   }
   let scaledAnimationStart = animationStartTime / slowDown;
+  if (paused) {
+    pausedTime += delta;
+    return;
+  }
 
-  // if (nextLogIndex === 0) {
-  //   var shouldContinue = true;
-  // } else {
   // console.log(`first log time ${firstLogTime}`);
-  console.log(
-    `timeFromFirstLog ${jsonLogs[nextLogIndex].timestamp - firstLogTime}`
-  );
+  // console.log(
+  //   `timeFromFirstLog ${jsonLogs[nextLogIndex].timestamp - firstLogTime}`
+  // );
   // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
-  console.log(`Scaled starttime ${scaledAnimationStart}`);
-  console.log(`Scaled time ${scaledTime}`);
-  //   console.log(`scaledTime ${scaledTime}`);
-  //   var shouldContinue = timeFromFirstLog + scaledAnimationStart < scaledTime;
-  // }
+  // console.log(`Scaled starttime ${scaledAnimationStart}`);
+  // console.log(`Scaled time ${scaledTime}`);
 
-  // iterate from nextLogIndex until hitting a log whose timestamp exceeds scaledTime
-  // TODO refactor so we don't have these reapeated lines
   for (
     ;
     (jsonLogs[nextLogIndex].timestamp - firstLogTime + scaledAnimationStart <
-      scaledTime ||
+      scaledPlayedTime ||
       nextLogIndex === 0) &&
     nextLogIndex < jsonLogs.length;
     nextLogIndex++
   ) {
     processLog(jsonLogs[nextLogIndex], delta, "thermal");
-    // while (jsonLogs[nextLogIndex].timestamp < 1e9) {
-    //   nextLogIndex++;
-    // }
     // timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime;
     // shouldContinue = timeFromFirstLog + scaledAnimationStart < scaledTime;
     // console.log(`first log time ${firstLogTime}`);
@@ -337,16 +335,3 @@ view.onFrame = function onFrame(event) {
     // );
   }
 };
-
-// const selectElement = document.querySelector("#seek-bar");
-
-// selectElement.addEventListener("change", event => {
-//   portionRun = event.target.value / 100;
-//   secondsFromFirstLog = portionRun * totalTimeRecorded;
-//   console.log(`secondsFromFirstLog ${secondsFromFirstLog}`);
-//   nextLogIndex = jsonLogs.findIndex(
-//     x => x.timestamp - firstLogTime > secondsFromFirstLog
-//   );
-//   console.log(`nextLogIndex ${nextLogIndex}`);
-//   animationStartTime = globalTime - secondsFromFirstLog;
-// });
