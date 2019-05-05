@@ -62,6 +62,15 @@ for (let i = 0; i < 16; i++) {
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
   hosts.push(path);
+
+  var text = new PointText(
+    new Point(
+      50 + i * (hostSize + hostGap) + hostSize / 2,
+      startHeight + hostSize / 2 + 5
+    )
+  );
+  text.justification = "center";
+  text.content = i + 1;
 }
 
 //base switches
