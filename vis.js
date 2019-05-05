@@ -227,10 +227,7 @@ let lastLogTime = null;
 let totalTimeRecorded = null;
 let animationStartTime = null;
 let slowDown = 1;
-let timelineVal = 0;
-let pausedTime = 0;
 let currentTime = 0;
-// let playedTime = 0;
 
 speedSlider.addEventListener("change", () => {
   slowDown = event.target.value;
@@ -306,35 +303,13 @@ function processLog(log, delta, mode) {
 }
 
 view.onFrame = function onFrame(event) {
-  if (jsonLogs === null) {
+  if (jsonLogs === null || paused) {
     return;
   }
-  // The total amount of time passed since
-  // the first frame event in seconds:
-  let time = event.time;
-  // let playedTime = time - pausedTime;
   let delta = event.delta; // The time passed in seconds since the last frame event
-  // let scaledTime = time / slowDown;
-  // let scaledPlayedTime = playedTime / slowDown;
-  // if (animationStartTime === null) {
-  //   animationStartTime = time;
-  // }
-  // let scaledAnimationStart = animationStartTime / slowDown;
-  if (paused) {
-    pausedTime += delta;
-    return;
-  } else {
-    currentTime += delta / slowDown;
-  }
-
-  // console.log(`first log time ${firstLogTime}`);
-  // console.log(
-  //   `timeFromFirstLog ${jsonLogs[nextLogIndex].timestamp - firstLogTime}`
-  // );
-  // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
-  // console.log(`Scaled starttime ${scaledAnimationStart}`);
-  // console.log(`Scaled time ${scaledTime}`);
-  console.log(`current time ${currentTime}`);
+  let scaledDelta = delta / slowDown;
+  currentTime += scaledDelta;
+  // console.log(`current time ${currentTime}`);
 
   for (
     ;
@@ -343,6 +318,6 @@ view.onFrame = function onFrame(event) {
     nextLogIndex < jsonLogs.length;
     nextLogIndex++
   ) {
-    processLog(jsonLogs[nextLogIndex], delta / slowDown, "thermal");
+    processLog(jsonLogs[nextLogIndex], scaledDelta, "thermal");
   }
 };
