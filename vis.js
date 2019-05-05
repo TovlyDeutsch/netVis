@@ -184,6 +184,14 @@ for (let i = 0; i < 4; i++) {
   }
 }
 
+function setLinksToBlack() {
+  for (linkPath of linkA.concat(linkH)) {
+    console.log("hre");
+    linkPath.data.heat = 10000;
+    linkPath.strokeColor = "black";
+  }
+}
+
 function trimJsonEnds(jsonLogs) {
   function findMaxDiff(x, i) {
     let minDiff = 60;
@@ -210,12 +218,17 @@ function trimJsonEnds(jsonLogs) {
 
 let paused = true;
 const playButton = document.querySelector("#play-pause");
+const restartButton = document.querySelector("#restart");
 
 let jsonLogs = null;
 let nextLogIndex = 0;
 let firstLogTime = null;
 let lastLogTime = null;
 let totalTimeRecorded = null;
+let animationStartTime = null;
+let slowDown = 2;
+let timelineVal = 0;
+let pausedTime = 0;
 
 document.getElementById("import").onclick = function() {
   let files = document.getElementById("selectFiles").files;
@@ -233,10 +246,15 @@ document.getElementById("import").onclick = function() {
     lastLogTime = jsonLogs[jsonLogs.length - 1].timestamp;
     totalTimeRecorded = lastLogTime - firstLogTime;
     playButton.disabled = false;
+    restartButton.disabled = false;
     playButton.addEventListener("click", event => {
       paused = !paused;
       playButton.innerHTML = paused ? "Play" : "Pause";
-      console.log("clicked");
+    });
+    restartButton.addEventListener("click", event => {
+      animationStartTime = null;
+      nextLogIndex = 0;
+      setLinksToBlack();
     });
   };
 
@@ -273,18 +291,6 @@ function processLog(log, delta, mode) {
       break;
   }
 }
-
-// takes in tcpdump time stamp and converts it to absolute unix time
-function toUnix(timestamp) {
-  // "23:42:57.754229"
-  timestamp.search(/(d+):(\d):(\d)\.(\d+)/);
-  return new Date(timestamp);
-}
-
-let slowDown = 100;
-let timelineVal = 0;
-let animationStartTime = null;
-let pausedTime = 0;
 
 view.onFrame = function onFrame(event) {
   if (jsonLogs === null) {
