@@ -11,8 +11,8 @@
 
       /* Scale canvas with resize attribute to full size */
       canvas[resize] {
-        width: 70%;
-        height: 70%;
+        width: 80%;
+        height: 80%;
       }
     </style>
   </head>
@@ -23,6 +23,11 @@
     <input type="file" id="selectFiles" value="Import" /><br />
     <button id="import">Import</button>
     <textarea id="result"></textarea>
+    <!-- from https://blog.teamtreehouse.com/building-custom-controls-for-html5-videos -->
+    <div id="video-controls">
+      <!-- <button type="button" id="play-pause">Play</button> -->
+      <input type="range" id="seek-bar" value="0" />
+    </div>
 
     <!-- Load the Paper.js library -->
     <script type="text/javascript" src="./paper-full.js"></script>

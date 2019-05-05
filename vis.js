@@ -201,7 +201,7 @@ document.getElementById("import").onclick = function() {
     // console.log(e);
     let result = JSON.parse(e.target.result);
     jsonLogs = result.slice(2);
-    firstLogTime = jsonLogs[0].timestamp;
+    firstLogTime = jsonLogs[2].timestamp;
     // let formatted = JSON.stringify(result, null, 2);
     // document.getElementById("result").value = formatted;
   };
@@ -258,39 +258,55 @@ function toUnix(timestamp) {
 // }
 
 var slowDown = 1;
+let timelineVal = 0;
+let globalTime = null;
 
-var animationStartTime = null;
+let animationStartTime = null;
 view.onFrame = function onFrame(event) {
+  // The total amount of time passed since
+  // the first frame event in seconds:
+  let time = event.time;
+  globalTime = time;
+  let scaledTime = time / slowDown;
+  // The time passed in seconds since the last frame event
+  let delta = event.delta;
+
   if (jsonLogs === null) {
     return;
   }
-  // console.log(event.time);
-  // The total amount of time passed since
-  // the first frame event in seconds:
-  let time = event.time * (1 / slowDown);
-  // The time passed in seconds since the last frame event:
-  let delta = event.delta;
-  // console.log(time, delta);
+
+  var timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime; // better var name?
   if (animationStartTime === null) {
     animationStartTime = time;
   }
+  if (nextLogIndex === 0) {
+    var shouldContinue = true;
+  } else {
+    var shouldContinue = timeFromFirstLog + animationStartTime < scaledTime;
+  }
 
-  // iterate from nextLogIndex until hitting a log whose timestamp exceeds time
-  // decayLinks(delta);
-  shouldContinue = true;
+  // iterate from nextLogIndex until hitting a log whose timestamp exceeds scaledTime
+  // TODO refactor so we don't have these reapeated lines
+
   while (shouldContinue && nextLogIndex < jsonLogs.length) {
-    // console.log("firstlogtime", firstLogTime);
-    // console.log("animation start time", animationStartTime);
-    // console.log("next timestamp", jsonLogs[nextLogIndex + 1].timestamp);
-    // // debugger;
-    // console.log("processing logs" + nextLogIndex);
     processLog(jsonLogs[nextLogIndex], delta, "thermal");
     while (jsonLogs[nextLogIndex].timestamp < 1e9) {
       nextLogIndex++;
     }
-    shouldContinue =
-      jsonLogs[nextLogIndex].timestamp - firstLogTime + animationStartTime <
-      time;
+    timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime;
+    shouldContinue = timeFromFirstLog + animationStartTime < scaledTime;
+    console.log(`first log time ${firstLogTime}`);
+    console.log(`next log index ${nextLogIndex}`);
+    console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
+    console.log(timeFromFirstLog, animationStartTime, scaledTime);
     nextLogIndex++;
   }
 };
+
+// const selectElement = document.querySelector("#seek-bar");
+
+// selectElement.addEventListener("change", event => {
+//   timelineVal = event.target.value;
+//   console.log(timelineVal);
+//   animationStartTime = globalTime - timelineVal;
+// });
