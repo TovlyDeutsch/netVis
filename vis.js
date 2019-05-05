@@ -73,6 +73,15 @@ for (let i = 0; i < 8; i++) {
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
   swBase.push(path);
+
+  var text = new PointText(
+    new Point(
+      getHeightSwXL(i) + switchSize / 2,
+      startHeight - layer1Gap + switchSize / 2 + 5
+    )
+  );
+  text.justification = "center";
+  text.content = "S410" + (i + 1);
 }
 
 //aggregate switches
@@ -87,6 +96,15 @@ for (let i = 0; i < 8; i++) {
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
   swAgg.push(path);
+
+  var text = new PointText(
+    new Point(
+      getHeightSwXL(i) + switchSize / 2,
+      startHeight - layer1Gap - layer2Gap + switchSize / 2 + 5
+    )
+  );
+  text.justification = "center";
+  text.content = "S420" + (i + 1);
 }
 
 //core switches
@@ -104,6 +122,17 @@ for (let i = 0; i < 4; i++) {
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
   swCore.push(path);
+
+  var text = new PointText(
+    new Point(
+      0.5 * getHeightSwXR(2 * i) +
+        0.5 * getHeightSwXR(2 * i + 1) -
+        switchSize / 2,
+      startHeight - layer1Gap - layer2Gap - layer3Gap + switchSize / 2 + 5
+    )
+  );
+  text.justification = "center";
+  text.content = "S430" + (i + 1);
 }
 
 //host-base links
