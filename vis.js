@@ -205,7 +205,7 @@ function trimJsonEnds(jsonLogs) {
       .reverse()
       .findIndex(findMaxDiff);
   console.log(startIndex, endIndex);
-  return jsonLogs.slice(startIndex, endIndex);
+  return jsonLogs.slice(startIndex + 1, endIndex - 1);
 }
 
 let jsonLogs = null;
@@ -310,6 +310,12 @@ view.onFrame = function onFrame(event) {
   if (nextLogIndex === 0) {
     var shouldContinue = true;
   } else {
+    console.log(`first log time ${firstLogTime}`);
+    console.log(`timeFromFirstLog ${timeFromFirstLog}`);
+    console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
+    console.log(`starttime ${animationStartTime}`);
+    console.log(`scaledTime ${scaledTime}`);
+
     var shouldContinue = timeFromFirstLog + animationStartTime < scaledTime;
   }
 
@@ -324,7 +330,7 @@ view.onFrame = function onFrame(event) {
     timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime;
     shouldContinue = timeFromFirstLog + animationStartTime < scaledTime;
     console.log(`first log time ${firstLogTime}`);
-    console.log(`next log index ${nextLogIndex}`);
+    console.log(`next log index  in while${nextLogIndex}`);
     console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
     console.log(timeFromFirstLog, animationStartTime, scaledTime);
     nextLogIndex++;
