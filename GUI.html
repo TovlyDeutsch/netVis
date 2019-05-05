@@ -12,26 +12,38 @@
       /* Scale canvas with resize attribute to full size */
       canvas[resize] {
         width: 80%;
-        height: 80%;
+        height: 60%;
       }
 
-      button {
+      button,
+      input {
         margin: 8px;
-        display: inline;
+        /* display: inline; */
+      }
+
+      #controls {
+        margin: auto;
+        width: fit-content;
+      }
+      h1 {
+        margin: auto;
+        width: fit-content;
+        margin-bottom: 16px;
+        font-family: sans-serif;
       }
     </style>
   </head>
 
   <body>
     <canvas id="myCanvas" resize></canvas>
-
-    <input type="file" id="selectFiles" value="Import" />
-    <!-- <button id="import">Import</button> -->
-    <!-- from https://blog.teamtreehouse.com/building-custom-controls-for-html5-videos -->
-    <div id="video-controls">
-      <button type="button" id="play-pause" disabled>Play</button>
-      <button type="button" id="restart" disabled>Restart</button>
-      <!-- <input type="range" id="seek-bar" value="0" /> -->
+    <h1 id="status">Please upload a JSON log</h1>
+    <div id="controls">
+      <input type="file" id="selectFiles" />
+      <div id="video-controls">
+        <button type="button" id="play-pause" disabled>Play</button>
+        <button type="button" id="restart" disabled>Restart</button>
+        <!-- <input type="range" id="seek-bar" value="0" /> -->
+      </div>
     </div>
 
     <!-- Load the Paper.js library -->

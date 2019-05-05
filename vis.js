@@ -217,6 +217,7 @@ function trimJsonEnds(jsonLogs) {
 let paused = true;
 const playButton = document.querySelector("#play-pause");
 const restartButton = document.querySelector("#restart");
+const statusText = document.querySelector("#status");
 
 let jsonLogs = null;
 let nextLogIndex = 0;
@@ -235,18 +236,20 @@ document.querySelector("#selectFiles").addEventListener("change", () => {
     return false;
   }
 
+  statusText.innerText = "Loading JSON...";
+
   let fr = new FileReader();
 
   fr.onload = function(e) {
+    statusText.innerText = "Processing JSON...";
     let result = JSON.parse(e.target.result);
     jsonLogs = trimJsonEnds(result);
     firstLogTime = jsonLogs[0].timestamp;
     lastLogTime = jsonLogs[jsonLogs.length - 1].timestamp;
     totalTimeRecorded = lastLogTime - firstLogTime;
-    playButton.disabled = false;
-    restartButton.disabled = false;
     playButton.addEventListener("click", event => {
       paused = !paused;
+      statusText.innerText = paused ? "Paused" : "Playing Animation";
       playButton.innerHTML = paused ? "Play" : "Pause";
     });
     restartButton.addEventListener("click", event => {
@@ -254,6 +257,9 @@ document.querySelector("#selectFiles").addEventListener("change", () => {
       nextLogIndex = 0;
       setLinksToBlack();
     });
+    playButton.disabled = false;
+    restartButton.disabled = false;
+    statusText.innerText = "JSON processed, ready to play animation!";
   };
 
   fr.readAsText(files.item(0));
