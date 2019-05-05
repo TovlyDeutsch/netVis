@@ -219,6 +219,7 @@ const playButton = document.querySelector("#play-pause");
 const restartButton = document.querySelector("#restart");
 const statusText = document.querySelector("#status");
 const speedSlider = document.querySelector("#speed");
+const speedLabel = document.querySelector("#speed-label");
 
 let jsonLogs = null;
 let nextLogIndex = 0;
@@ -229,9 +230,12 @@ let animationStartTime = null;
 let slowDown = 1;
 let currentTime = 0;
 
-speedSlider.addEventListener("change", () => {
+speedSlider.addEventListener("input", () => {
   slowDown = event.target.value;
-  console.log(slowDown);
+  speedLabel.innerHTML =
+    slowDown == 1
+      ? "Real time"
+      : "<b>" + slowDown + "x</b> slower than real time";
 });
 
 document.querySelector("#selectFiles").addEventListener("change", () => {
