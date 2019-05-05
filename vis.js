@@ -228,8 +228,9 @@ let slowDown = 2;
 let timelineVal = 0;
 let pausedTime = 0;
 
-document.getElementById("import").onclick = function() {
-  let files = document.getElementById("selectFiles").files;
+document.querySelector("#selectFiles").addEventListener("change", () => {
+  // let files = document.getElementById("selectFiles").files;
+  let files = event.target.files;
   if (files.length <= 0) {
     return false;
   }
@@ -256,7 +257,7 @@ document.getElementById("import").onclick = function() {
   };
 
   fr.readAsText(files.item(0));
-};
+});
 
 // TODO extract lenth and ip's from log
 let bytesPerPacket = 64; // Assumption

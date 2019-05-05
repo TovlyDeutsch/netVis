@@ -14,15 +14,19 @@
         width: 80%;
         height: 80%;
       }
+
+      button {
+        margin: 8px;
+        display: inline;
+      }
     </style>
   </head>
 
   <body>
     <canvas id="myCanvas" resize></canvas>
 
-    <input type="file" id="selectFiles" value="Import" /><br />
-    <button id="import">Import</button>
-    <textarea id="result"></textarea>
+    <input type="file" id="selectFiles" value="Import" />
+    <!-- <button id="import">Import</button> -->
     <!-- from https://blog.teamtreehouse.com/building-custom-controls-for-html5-videos -->
     <div id="video-controls">
       <button type="button" id="play-pause" disabled>Play</button>
