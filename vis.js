@@ -45,6 +45,8 @@ function getLinkIndex(sw, port) {
   }
 }
 
+function getSwitches(sw, port) {}
+
 for (let i = 0; i < 16; i++) {
   let baseHost = new Path.Rectangle(
     new Point(50 + i * (hostSize + hostGap), startHeight),
@@ -252,13 +254,6 @@ function trimJsonEnds(jsonLogs) {
   return jsonLogs.slice(startIndex + 1, endIndex - 1);
 }
 
-let paused = true;
-const playButton = document.querySelector("#play-pause");
-const restartButton = document.querySelector("#restart");
-const statusText = document.querySelector("#status");
-const speedSlider = document.querySelector("#speed");
-const speedLabel = document.querySelector("#speed-label");
-
 let jsonLogs = null;
 let nextLogIndex = 0;
 let firstLogTime = null;
@@ -267,6 +262,18 @@ let totalTimeRecorded = null;
 let animationStartTime = null;
 let slowDown = 1;
 let currentTime = 0;
+
+let paused = true;
+const playButton = document.querySelector("#play-pause");
+const restartButton = document.querySelector("#restart");
+const statusText = document.querySelector("#status");
+const speedSlider = document.querySelector("#speed");
+const speedLabel = document.querySelector("#speed-label");
+slowDown = parseInt(speedSlider.value);
+speedLabel.innerHTML =
+  slowDown == 1
+    ? "Real time"
+    : "<b>" + slowDown + "x</b> slower than real time";
 
 speedSlider.addEventListener("input", () => {
   slowDown = event.target.value;
@@ -318,6 +325,19 @@ let bytesPerPacket = 64; // Assumption
 let bitsPerpacket = bytesPerPacket * 8;
 let maxCapacityMb = 1e7; // 10Mb
 let maxHeat = maxCapacityMb / bitsPerpacket;
+
+let linksToUpdate = new Set();
+
+function heatToCongestion() {
+  for (linkPath of linksToUpdate) {
+    let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
+    if (congestion > 1) {
+      // console.log(congestion);
+    }
+    linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
+  }
+}
+
 function processLog(log, delta, mode) {
   switch (mode) {
     case "thermal":
@@ -335,11 +355,12 @@ function processLog(log, delta, mode) {
       let beta = 0.2;
       linkPath.data.heat = beta * packetDelta + (1 - beta) * linkPath.data.heat;
       let totalBits = linkPath.data.heat * bitsPerpacket;
-      let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
-      if (congestion > 1) {
-        // console.log(congestion);
-      }
-      linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
+      linksToUpdate.add(linkPath);
+      // let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
+      // if (congestion > 1) {
+      //   // console.log(congestion);
+      // }
+      // linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
       break;
   }
 }
@@ -361,5 +382,7 @@ view.onFrame = function onFrame(event) {
     nextLogIndex++
   ) {
     processLog(jsonLogs[nextLogIndex], scaledDelta, "thermal");
+    heatToCongestion();
+    linksToUpdate = new Set();
   }
 };
