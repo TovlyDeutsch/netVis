@@ -285,7 +285,7 @@ function toUnix(timestamp) {
 //   }
 // }
 
-var slowDown = 1;
+var slowDown = 20;
 let timelineVal = 0;
 let globalTime = null;
 
@@ -310,29 +310,29 @@ view.onFrame = function onFrame(event) {
   if (nextLogIndex === 0) {
     var shouldContinue = true;
   } else {
-    console.log(`first log time ${firstLogTime}`);
-    console.log(`timeFromFirstLog ${timeFromFirstLog}`);
-    console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
-    console.log(`starttime ${animationStartTime}`);
+    // console.log(`first log time ${firstLogTime}`);
+    // console.log(`timeFromFirstLog ${timeFromFirstLog}`);
+    // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
+    // console.log(`starttime ${animationStartTime}`);
     console.log(`scaledTime ${scaledTime}`);
 
-    var shouldContinue = timeFromFirstLog + animationStartTime < scaledTime;
+    var shouldContinue = timeFromFirstLog < scaledTime;
   }
 
   // iterate from nextLogIndex until hitting a log whose timestamp exceeds scaledTime
   // TODO refactor so we don't have these reapeated lines
 
-  while (shouldContinue && nextLogIndex < jsonLogs.length) {
+  while (shouldContinue && nextLogIndex < jsonLogs.length - 2) {
     processLog(jsonLogs[nextLogIndex], delta, "thermal");
     // while (jsonLogs[nextLogIndex].timestamp < 1e9) {
     //   nextLogIndex++;
     // }
     timeFromFirstLog = jsonLogs[nextLogIndex].timestamp - firstLogTime;
     shouldContinue = timeFromFirstLog + animationStartTime < scaledTime;
-    console.log(`first log time ${firstLogTime}`);
-    console.log(`next log index  in while${nextLogIndex}`);
-    console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
-    console.log(timeFromFirstLog, animationStartTime, scaledTime);
+    // console.log(`first log time ${firstLogTime}`);
+    // console.log(`next log index  in while${nextLogIndex}`);
+    // console.log(`timestamp ${jsonLogs[nextLogIndex].timestamp}`);
+    // console.log(timeFromFirstLog, animationStartTime, scaledTime);
     nextLogIndex++;
   }
 };
