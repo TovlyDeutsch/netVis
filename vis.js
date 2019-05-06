@@ -16,6 +16,8 @@ let swCore = [];
 let linkH = [];
 let linkA = [];
 
+let startingSwitchHeat = 0;
+
 function getHeightSwX(i) {
   return hostSize + hostGap * 0.5 + 50 + 2 * i * (hostSize + hostGap);
 }
@@ -83,6 +85,7 @@ for (let i = 0; i < 8; i++) {
   );
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
+  path.data.heat = startingSwitchHeat;
   swBase.push(path);
 
   var text = new PointText(
@@ -106,6 +109,7 @@ for (let i = 0; i < 8; i++) {
   );
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
+  path.data.heat = startingSwitchHeat;
   swAgg.push(path);
 
   var text = new PointText(
@@ -133,6 +137,7 @@ for (let i = 0; i < 4; i++) {
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
   swCore.push(path);
+  path.data.heat = startingSwitchHeat;
 
   var text = new PointText(
     new Point(
@@ -327,14 +332,44 @@ let maxCapacityMb = 1e7; // 10Mb
 let maxHeat = maxCapacityMb / bitsPerpacket;
 
 let linksToUpdate = new Set();
+let swToUpdate = new Set();
+
+// function swObjToLinks(swObj) {
+//   for (let i = start; i < end; i++) {
+//     getLinkIndex(swNum, port);
+//     let linkPath = linkA[linkIndex];
+//   }
+// }
 
 function heatToCongestion() {
   for (linkPath of linksToUpdate) {
     let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
-    if (congestion > 1) {
-      // console.log(congestion);
-    }
     linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
+  }
+  for (swPath of swToUpdate) {
+    let congestion = bitsPerpacket / maxCapacityMb / swPath.data.heat;
+    // console.log(congestion);
+    swPath.strokeColor = new Color(congestion, 1 - congestion, 0);
+    swPath.data.heat = startingSwitchHeat;
+  }
+}
+
+// takes in an aggr switch num and port number and returns corresponding sw
+function linkToSwitch(swNum, port) {
+  let level = port < 3 ? 1 : 3;
+  // console.log(swNum, port);
+  if (swNum % 2 === 1) {
+    if (level === 3) {
+      return { level: level, swNum: port - 2 };
+    } else {
+      return { level: level, swNum: swNum + port - 1 };
+    }
+  } else {
+    if (level === 3) {
+      return { level: level, swNum: port };
+    } else {
+      return { level: level, swNum: swNum + port - 2 };
+    }
   }
 }
 
@@ -354,13 +389,27 @@ function processLog(log, delta, mode) {
       // decay factor
       let beta = 0.2;
       linkPath.data.heat = beta * packetDelta + (1 - beta) * linkPath.data.heat;
-      let totalBits = linkPath.data.heat * bitsPerpacket;
       linksToUpdate.add(linkPath);
-      // let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
-      // if (congestion > 1) {
-      //   // console.log(congestion);
-      // }
-      // linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
+      swToUpdate.add(swAgg[swNum - 1]);
+      let connectedSw = linkToSwitch(swNum, port);
+      // console.log("link to switch", connectedSw);
+      // TODO don't nkow if this is
+      let connectedSwPath =
+        connectedSw.level === 3
+          ? swCore[connectedSw.swNum - 1]
+          : swBase[connectedSw.swNum - 1];
+      // console.log("connetec sw path", connectedSwPath);
+      if (swAgg[swNum - 1].data.heat === 0) {
+        swAgg[swNum - 1].data.heat += linkPath.data.heat;
+      } else {
+        swAgg[swNum - 1].data.heat -= linkPath.data.heat;
+      }
+      if (connectedSwPath.data.heat === 0) {
+        connectedSwPath.data.heat += linkPath.data.heat;
+      } else {
+        connectedSwPath.data.heat -= linkPath.data.heat;
+      }
+      swToUpdate.add(connectedSwPath);
       break;
   }
 }
@@ -384,5 +433,6 @@ view.onFrame = function onFrame(event) {
     processLog(jsonLogs[nextLogIndex], scaledDelta, "thermal");
     heatToCongestion();
     linksToUpdate = new Set();
+    swToUpdate = new Set();
   }
 };
