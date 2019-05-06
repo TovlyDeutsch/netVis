@@ -17,6 +17,7 @@ let linkH = [];
 let linkA = [];
 
 let startingSwitchHeat = 0;
+let startingSwitchCongestion = 0;
 
 function getHeightSwX(i) {
   return hostSize + hostGap * 0.5 + 50 + 2 * i * (hostSize + hostGap);
@@ -86,6 +87,7 @@ for (let i = 0; i < 8; i++) {
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
   path.data.heat = startingSwitchHeat;
+  path.data.congestion = startingSwitchCongestion;
   swBase.push(path);
 
   var text = new PointText(
@@ -110,6 +112,8 @@ for (let i = 0; i < 8; i++) {
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
   path.data.heat = startingSwitchHeat;
+  path.data.congestion = startingSwitchCongestion;
+
   swAgg.push(path);
 
   var text = new PointText(
@@ -138,6 +142,7 @@ for (let i = 0; i < 4; i++) {
   path.strokeColor = "black";
   swCore.push(path);
   path.data.heat = startingSwitchHeat;
+  path.data.congestion = startingSwitchCongestion;
 
   var text = new PointText(
     new Point(
@@ -347,10 +352,14 @@ function heatToCongestion() {
     linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
   }
   for (swPath of swToUpdate) {
-    let congestion = bitsPerpacket / maxCapacityMb / swPath.data.heat;
+    // let congestion = bitsPerpacket / maxCapacityMb / swPath.data.heat;
     // console.log(congestion);
-    swPath.strokeColor = new Color(congestion, 1 - congestion, 0);
-    swPath.data.heat = startingSwitchHeat;
+    swPath.strokeColor = new Color(
+      swPath.data.congestion,
+      1 - swPath.data.congestion,
+      0
+    );
+    swPath.data.congestion = startingSwitchCongestion;
   }
 }
 
@@ -399,16 +408,20 @@ function processLog(log, delta, mode) {
           ? swCore[connectedSw.swNum - 1]
           : swBase[connectedSw.swNum - 1];
       // console.log("connetec sw path", connectedSwPath);
-      if (swAgg[swNum - 1].data.heat === 0) {
-        swAgg[swNum - 1].data.heat += linkPath.data.heat;
-      } else {
-        swAgg[swNum - 1].data.heat -= linkPath.data.heat;
-      }
-      if (connectedSwPath.data.heat === 0) {
-        connectedSwPath.data.heat += linkPath.data.heat;
-      } else {
-        connectedSwPath.data.heat -= linkPath.data.heat;
-      }
+      swAgg[swNum - 1].data.congestion +=
+        bitsPerpacket / maxCapacityMb / linkPath.data.heat;
+      connectedSwPath.data.congestion +=
+        bitsPerpacket / maxCapacityMb / linkPath.data.heat;
+      // if (swAgg[swNum - 1].data.heat === 0) {
+      //   swAgg[swNum - 1].data.heat += linkPath.data.heat;
+      // } else {
+      //   swAgg[swNum - 1].data.heat -= linkPath.data.heat;
+      // }
+      // if (connectedSwPath.data.heat === 0) {
+      //   connectedSwPath.data.heat += linkPath.data.heat;
+      // } else {
+      //   connectedSwPath.data.heat -= linkPath.data.heat;
+      // }
       swToUpdate.add(connectedSwPath);
       break;
   }
