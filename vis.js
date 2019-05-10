@@ -374,6 +374,15 @@ document.querySelector("#selectFiles").addEventListener("change", () => {
   fr.readAsText(files.item(0));
 });
 
+function congestionToColor(congestion) {
+  if (congestion < 0.5) {
+    console.log;
+    return new Color(0, 2 * congestion, 1 - 2 * congestion);
+  } else {
+    return new Color(2 * congestion - 1, 1 - (2 * congestion - 1), 0);
+  }
+}
+
 // TODO extract lenth and ip's from log
 let bytesPerPacket = 64; // Assumption
 let bitsPerpacket = bytesPerPacket * 8;
@@ -392,10 +401,10 @@ function heatToCongestion() {
       linkPath.data.heat *= 1 + fadeFactor;
       let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
       total += congestion;
-      linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
+      linkPath.strokeColor = congestionToColor(congestion);
     }
     let switchCongestion = total / 4;
-    swPath.strokeColor = new Color(switchCongestion, 1 - switchCongestion, 0);
+    swPath.strokeColor = congestionToColor(switchCongestion);
   }
 }
 
