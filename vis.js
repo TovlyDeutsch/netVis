@@ -95,11 +95,15 @@ for (let i = 0; i < 8; i++) {
   path.data.heat = startingSwitchHeat;
   path.data.lastPacketTime = 0;
   path.data.congestion = startingSwitchCongestion;
+  path.data.level = 1;
   let swNum = i + 1;
   path.data.links = [
     getLinkIndex(swNum, 2 - (swNum % 2)),
-    getLinkIndex(swNum + 2 * (swNum % 2) - 1, 2 - (swNum % 2))
+    getLinkIndex(swNum + 2 * (swNum % 2) - 1, 2 - (swNum % 2)),
+    getBaseLinkIndex(swNum, 1),
+    getBaseLinkIndex(swNum, 2)
   ];
+
   console.log(`swNum: ${swNum}, level: aggr, indexes: ${path.data.links}`);
 
   swBase.push(path);
@@ -403,8 +407,14 @@ let allSw = swAgg.concat(swBase).concat(swCore);
 function heatToCongestion() {
   for (let swPath of allSw) {
     let total = 0;
-    for (let linkIndex of swPath.data.links) {
-      let linkPath = linkA[linkIndex];
+    for (let [i, linkIndex] of swPath.data.links.entries()) {
+      let linkPath;
+      if (swPath.data.level === 1 && i > 1) {
+        // console.log("refed linkH");
+        linkPath = linkH[linkIndex];
+      } else {
+        linkPath = linkA[linkIndex];
+      }
       linkPath.data.heat *= 1 + fadeFactor;
       let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
       total += congestion;
