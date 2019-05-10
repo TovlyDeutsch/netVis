@@ -14,10 +14,9 @@ class Collector(Thread):
 
     # Body of the thread. Loop continuously every 0.1s (10ms).
     def run(self):
-        for line in self.p.stdout.readline():
-            if self.flag:
-                break
-            self.dump.append(line)
+      while True:
+        line = self.p.stdout.readline()
+        self.dump.append(line)
 
 """
 pidToLink = {
@@ -42,7 +41,7 @@ fileAndLinks = [(open(f"Logs/{link}.txt", "w+"), link) for link in links]
 # command = 'mount -t vboxsf myfolder /home/mininet/netVis'
 # p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
 
-processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-U', '-w', '-tt', '-n', 'not',  'arp'],
+processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-U', '-tt', '-n', 'not',  'arp'],
                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1) for (fileObj, link) in fileAndLinks]
 #p = subprocess.Popen(['sudo', 'tcpdump', '-i', 'eth0', '-tt', '-n', 'not',  'arp'], stdout=subprocess.PIPE)
 
@@ -51,13 +50,16 @@ listeners = [Collector(p, dumps[i]) for i, p in enumerate(processes)]
 for listener in listeners:
     listener.start()
 
-time.sleep(20)
+# time.sleep(20)
+input("Press Enter to stop logging")
+
+
 
 for process in processes:
   process.kill()
 
 print("MADE IT HERE")
-print(dumps[0])
+print(dumps)
 jsonOut = open("log.json", "w")
 logList = []
 for (fileObj, link) in fileAndLinks:
