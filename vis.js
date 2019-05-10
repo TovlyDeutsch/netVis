@@ -50,7 +50,11 @@ function getLinkIndex(sw, port) {
   }
 }
 
-function getSwitches(sw, port) {}
+function getBaseLinkIndex(sw, port) {
+  return sw * 2 - 3 + port;
+}
+
+// function getSwitches(sw, port) {}
 
 for (let i = 0; i < 16; i++) {
   let baseHost = new Path.Rectangle(
@@ -193,6 +197,9 @@ for (let i = 0; i < 16; i++) {
   path.strokeColor = "black";
   path.moveTo(new Point(getHostMid(i), startHeight));
   path.lineTo(new Point(getHeightSwX(j), startHeight - layer1Gap + switchSize));
+  path.data.heat = startLinkHeat;
+  path.data.lastPacketTime = 0;
+  path.data.workingHeat = startLinkHeat;
   linkH.push(path);
 }
 
@@ -432,8 +439,15 @@ function processLog(log, delta, mode) {
     case "thermal":
       let swNum = parseInt(log.swName);
       let port = parseInt(log.port);
-      let linkIndex = getLinkIndex(swNum, port);
-      let linkPath = linkA[linkIndex];
+      let level = parseInt(log.level);
+      if (level === 2) {
+        let linkIndex = getLinkIndex(swNum, port);
+        var linkPath = linkA[linkIndex];
+      } else {
+        // console.log("processed level 1");
+        let linkIndex = getBaseLinkIndex(swNum, port);
+        var linkPath = linkH[linkIndex];
+      }
       if (!linkPath.data.lastPacketTime) {
         linkPath.data.lastPacketTime = log.timestamp;
         break;
