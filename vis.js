@@ -19,6 +19,8 @@ let linkA = [];
 let startingSwitchHeat = 0;
 let startingSwitchCongestion = 0;
 
+let startLinkHeat = 10000;
+
 function getHeightSwX(i) {
   return hostSize + hostGap * 0.5 + 50 + 2 * i * (hostSize + hostGap);
 }
@@ -87,7 +89,15 @@ for (let i = 0; i < 8; i++) {
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
   path.data.heat = startingSwitchHeat;
+  path.data.lastPacketTime = 0;
   path.data.congestion = startingSwitchCongestion;
+  let swNum = i + 1;
+  path.data.links = [
+    getLinkIndex(swNum, 2 - (swNum % 2)),
+    getLinkIndex(swNum + 2 * (swNum % 2) - 1, 2 - (swNum % 2))
+  ];
+  console.log(`swNum: ${swNum}, level: aggr, indexes: ${path.data.links}`);
+
   swBase.push(path);
 
   var text = new PointText(
@@ -112,7 +122,17 @@ for (let i = 0; i < 8; i++) {
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
   path.data.heat = startingSwitchHeat;
+  path.data.lastPacketTime = 0;
+
   path.data.congestion = startingSwitchCongestion;
+  let swNum = i + 1;
+  path.data.links = [
+    getLinkIndex(swNum, 1),
+    getLinkIndex(swNum, 2),
+    getLinkIndex(swNum, 3),
+    getLinkIndex(swNum, 4)
+  ];
+  console.log(`swNum: ${swNum}, level: aggr, indexes: ${path.data.links}`);
 
   swAgg.push(path);
 
@@ -142,7 +162,17 @@ for (let i = 0; i < 4; i++) {
   path.strokeColor = "black";
   swCore.push(path);
   path.data.heat = startingSwitchHeat;
+  path.data.lastPacketTime = 0;
   path.data.congestion = startingSwitchCongestion;
+
+  let swNum = i + 1;
+  path.data.links = [
+    getLinkIndex(1 + Math.floor(i / 2), 4 - (swNum % 2)),
+    getLinkIndex(3 + Math.floor(i / 2), 4 - (swNum % 2)),
+    getLinkIndex(5 + Math.floor(i / 2), 4 - (swNum % 2)),
+    getLinkIndex(7 + Math.floor(i / 2), 4 - (swNum % 2))
+  ];
+  console.log(`swNum: ${swNum}, level: core, indexes: ${path.data.links}`);
 
   var text = new PointText(
     new Point(
@@ -170,7 +200,9 @@ for (let i = 0; i < 16; i++) {
 for (let i = 0; i < 4; i++) {
   let path = new Path();
   path.strokeColor = "black";
-  path.data.heat = 10000;
+  path.data.heat = startLinkHeat;
+  path.data.lastPacketTime = 0;
+  path.data.workingHeat = startLinkHeat;
   path.moveTo(new Point(getHeightSwX(2 * i), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -181,7 +213,9 @@ for (let i = 0; i < 4; i++) {
   linkA.push(path);
   path = new Path();
   path.strokeColor = "black";
-  path.data.heat = 10000;
+  path.data.heat = startLinkHeat;
+  path.data.lastPacketTime = 0;
+  path.data.workingHeat = startingSwitchHeat;
   path.moveTo(new Point(getHeightSwX(2 * i + 1), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -193,6 +227,8 @@ for (let i = 0; i < 4; i++) {
   path = new Path();
   path.strokeColor = "black";
   path.data.heat = 10000;
+  path.data.lastPacketTime = 0;
+  path.data.workingHeat = 10000;
   path.moveTo(new Point(getHeightSwX(2 * i), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -204,6 +240,8 @@ for (let i = 0; i < 4; i++) {
   path = new Path();
   path.strokeColor = "black";
   path.data.heat = 10000;
+  path.data.lastPacketTime = 0;
+  path.data.workingHeat = 10000;
   path.moveTo(new Point(getHeightSwX(2 * i + 1), startHeight - layer1Gap));
   path.lineTo(
     new Point(
@@ -221,6 +259,8 @@ for (let i = 0; i < 4; i++) {
     let path = new Path();
     path.strokeColor = "black";
     path.data.heat = 10000;
+    path.data.lastPacketTime = 0;
+    path.data.workingHeat = 10000;
     path.moveTo(
       new Point(
         getHeightSwX(2 * i) * 0.5 + getHeightSwX(2 * i + 1) * 0.5,
@@ -235,7 +275,7 @@ for (let i = 0; i < 4; i++) {
 }
 
 function setLinksToBlack() {
-  for (linkPath of linkA.concat(linkH)) {
+  for (let linkPath of linkA.concat(linkH)) {
     linkPath.data.heat = 10000;
     linkPath.strokeColor = "black";
   }
@@ -271,7 +311,10 @@ let lastLogTime = null;
 let totalTimeRecorded = null;
 let animationStartTime = null;
 let slowDown = 1;
+let fadeAdjustment = 1; // TODO maybe make this user adjustable
+let fadeFactor = fadeAdjustment / slowDown;
 let currentTime = 0;
+let beta = 0.8;
 
 let paused = true;
 const playButton = document.querySelector("#play-pause");
@@ -280,6 +323,7 @@ const statusText = document.querySelector("#status");
 const speedSlider = document.querySelector("#speed");
 const speedLabel = document.querySelector("#speed-label");
 slowDown = parseInt(speedSlider.value);
+fadeFactor = 1 / slowDown;
 speedLabel.innerHTML =
   slowDown == 1
     ? "Real time"
@@ -338,28 +382,20 @@ let maxHeat = maxCapacityMb / bitsPerpacket;
 
 let linksToUpdate = new Set();
 let swToUpdate = new Set();
-
-// function swObjToLinks(swObj) {
-//   for (let i = start; i < end; i++) {
-//     getLinkIndex(swNum, port);
-//     let linkPath = linkA[linkIndex];
-//   }
-// }
+let allSw = swAgg.concat(swBase).concat(swCore);
 
 function heatToCongestion() {
-  for (linkPath of linksToUpdate) {
-    let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
-    linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
-  }
-  for (swPath of swToUpdate) {
-    // let congestion = bitsPerpacket / maxCapacityMb / swPath.data.heat;
-    // console.log(congestion);
-    swPath.strokeColor = new Color(
-      swPath.data.congestion,
-      1 - swPath.data.congestion,
-      0
-    );
-    swPath.data.congestion = startingSwitchCongestion;
+  for (let swPath of allSw) {
+    let total = 0;
+    for (let linkIndex of swPath.data.links) {
+      let linkPath = linkA[linkIndex];
+      linkPath.data.heat *= 1 + fadeFactor;
+      let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
+      total += congestion;
+      linkPath.strokeColor = new Color(congestion, 1 - congestion, 0);
+    }
+    let switchCongestion = total / 4;
+    swPath.strokeColor = new Color(switchCongestion, 1 - switchCongestion, 0);
   }
 }
 
@@ -395,34 +431,9 @@ function processLog(log, delta, mode) {
       }
       let packetDelta = log.timestamp - linkPath.data.lastPacketTime;
       linkPath.data.lastPacketTime = log.timestamp;
-      // decay factor
-      let beta = 0.2;
-      linkPath.data.heat = beta * packetDelta + (1 - beta) * linkPath.data.heat;
-      linksToUpdate.add(linkPath);
-      swToUpdate.add(swAgg[swNum - 1]);
-      let connectedSw = linkToSwitch(swNum, port);
-      // console.log("link to switch", connectedSw);
-      // TODO don't nkow if this is
-      let connectedSwPath =
-        connectedSw.level === 3
-          ? swCore[connectedSw.swNum - 1]
-          : swBase[connectedSw.swNum - 1];
-      // console.log("connetec sw path", connectedSwPath);
-      swAgg[swNum - 1].data.congestion +=
-        bitsPerpacket / maxCapacityMb / linkPath.data.heat;
-      connectedSwPath.data.congestion +=
-        bitsPerpacket / maxCapacityMb / linkPath.data.heat;
-      // if (swAgg[swNum - 1].data.heat === 0) {
-      //   swAgg[swNum - 1].data.heat += linkPath.data.heat;
-      // } else {
-      //   swAgg[swNum - 1].data.heat -= linkPath.data.heat;
-      // }
-      // if (connectedSwPath.data.heat === 0) {
-      //   connectedSwPath.data.heat += linkPath.data.heat;
-      // } else {
-      //   connectedSwPath.data.heat -= linkPath.data.heat;
-      // }
-      swToUpdate.add(connectedSwPath);
+      linkPath.data.workingHeat =
+        beta * packetDelta + (1 - beta) * linkPath.data.workingHeat;
+      linkPath.data.heat = linkPath.data.workingHeat;
       break;
   }
 }
@@ -445,7 +456,5 @@ view.onFrame = function onFrame(event) {
   ) {
     processLog(jsonLogs[nextLogIndex], scaledDelta, "thermal");
     heatToCongestion();
-    linksToUpdate = new Set();
-    swToUpdate = new Set();
   }
 };
