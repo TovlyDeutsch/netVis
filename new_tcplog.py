@@ -27,22 +27,30 @@ pidToLink = {
 f = open("test.txt", "w")
 
 aggPorts = range(1, 5)
+basePorts = range(1, 3)
 swNames = [f's42{num:02}' for num in range(1, 9)]
 
-links = reduce(lambda acc, swName: acc +
+baseSwNames = [f's41{num:02}' for num in range(1, 9)]
+
+aggrLinks = reduce(lambda acc, swName: acc +
                [f"{swName}-eth{link}"  for link in aggPorts], swNames, [])
 
-for link in links:
-    print(link)
+baseLinks = reduce(lambda acc, swName: acc +
+    [f"{swName}-eth{link}" for link in basePorts], baseSwNames, [])
 
-fileAndLinks = [(open(f"Logs/{link}.txt", "w+"), link) for link in links]
+links = aggrLinks + baseLinks
+
+# for link in links:
+#     print(link)
+
+# fileAndLinks = [(open(f"Logs/{link}.txt", "w+"), link) for link in links]
 
 # sudoPassword = 'mininet'
 # command = 'mount -t vboxsf myfolder /home/mininet/netVis'
 # p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
 
 processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-U', '-tt', '-n', 'not',  'arp'],
-                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1) for (fileObj, link) in fileAndLinks]
+                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1) for link in links]
 #p = subprocess.Popen(['sudo', 'tcpdump', '-i', 'eth0', '-tt', '-n', 'not',  'arp'], stdout=subprocess.PIPE)
 # def worker(processes):
 #   dumps = [[] for _ in processes]
@@ -79,7 +87,8 @@ logList = []
 print('opened json')
 for (fileObj, link) in fileAndLinks:
     fileObj.seek(0)
-    linkGrepped = re.search("s\d2(\d{2})-eth(\d)", link)
+    linkGrepped = re.search("s\d{1}(\d{1})(\d{2})-eth(\d)", link)
+    level = linkGrepped.group(1)
     swName = linkGrepped.group(1)
     port = linkGrepped.group(2)
 
@@ -94,6 +103,7 @@ for (fileObj, link) in fileAndLinks:
       obj = {
         'swName': swName,
         "port": port,
+        'level': level,
         "timestamp": float(greppedLine.group(1))
       }
       logList.append(obj)
