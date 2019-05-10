@@ -46,9 +46,10 @@ jsonOut = open("log.json", "w")
 logList = []
 for (fileObj, link) in fileAndLinks:
     fileObj.seek(0)
-    linkGrepped = re.search("s\d2(\d{2})-eth(\d)", link)
-    swName = linkGrepped.group(1)
-    port = linkGrepped.group(2)
+    linkGrepped = re.search("s\d{1}(\d{1})(\d{2})-eth(\d)", link)
+    level = linkGrepped.group(1)
+    swName = linkGrepped.group(2)
+    port = linkGrepped.group(3)
 
     # read
     for line in fileObj:
@@ -61,6 +62,7 @@ for (fileObj, link) in fileAndLinks:
         obj = {
             'swName': swName,
             "port": port,
+            'level': level,
             "timestamp": float(greppedLine.group(1))
         }
         logList.append(obj)
