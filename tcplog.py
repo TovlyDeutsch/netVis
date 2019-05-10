@@ -12,10 +12,18 @@ pidToLink = {
 f = open("test.txt", "w")
 
 aggPorts = range(1, 5)
+basePorts = range(1, 3)
 swNames = [f's42{num:02}' for num in range(1, 9)]
 
-links = reduce(lambda acc, swName: acc +
-               [f"{swName}-eth{link}"  for link in aggPorts], swNames, [])
+baseSwNames = [f's41{num:02}' for num in range(1, 9)]
+
+aggrLinks = reduce(lambda acc, swName: acc +
+                   [f"{swName}-eth{link}" for link in aggPorts], swNames, [])
+
+baseLinks = reduce(lambda acc, swName: acc +
+                   [f"{swName}-eth{link}" for link in basePorts], baseSwNames, [])
+
+links = aggrLinks + baseLinks
 
 for link in links:
     print(link)
@@ -32,7 +40,7 @@ processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-tt', '-n', 'not'
 
 input("Press Enter to stop logging")
 for process in processes:
-  process.kill()
+    process.kill()
 
 jsonOut = open("log.json", "w")
 logList = []
@@ -44,23 +52,22 @@ for (fileObj, link) in fileAndLinks:
 
     # read
     for line in fileObj:
-      # print(line)
-      # regex
-      greppedLine = re.search("^(\d+\.\d+) IP ", line)
-      if not greppedLine:
-        continue
+        # print(line)
+        # regex
+        greppedLine = re.search("^(\d+\.\d+) IP ", line)
+        if not greppedLine:
+            continue
 
-      obj = {
-        'swName': swName,
-        "port": port,
-        "timestamp": float(greppedLine.group(1))
-      }
-      logList.append(obj)
+        obj = {
+            'swName': swName,
+            "port": port,
+            "timestamp": float(greppedLine.group(1))
+        }
+        logList.append(obj)
 
 logList.sort(key=lambda x: x["timestamp"])
 json.dump(logList, jsonOut)
 
-    
 
 """
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
