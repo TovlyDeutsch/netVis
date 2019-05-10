@@ -5,6 +5,8 @@ import json
 import time
 from threading import Thread
 import multiprocessing
+import os
+os.chdir('projectb-TovlyDeutsch') #TODO point this out in user guide
 
 class Collector(Thread):
     def __init__(self, p, dump):
@@ -17,14 +19,6 @@ class Collector(Thread):
       while True:
         line = self.p.stdout.readline()
         self.dump.append(line)
-
-"""
-pidToLink = {
-  pid => indx in `processes`
-}
-"""
-
-f = open("test.txt", "w")
 
 aggPorts = range(1, 5)
 basePorts = range(1, 3)
@@ -40,32 +34,13 @@ baseLinks = reduce(lambda acc, swName: acc +
 
 links = aggrLinks + baseLinks
 
-# for link in links:
-#     print(link)
+processes = [(subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-U', '-tt', '-n', 'not',  'arp'],
+                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1), link) for link in links]
 
-# fileAndLinks = [(open(f"Logs/{link}.txt", "w+"), link) for link in links]
-
-# sudoPassword = 'mininet'
-# command = 'mount -t vboxsf myfolder /home/mininet/netVis'
-# p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
-
-processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-U', '-tt', '-n', 'not',  'arp'],
-                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1) for link in links]
-#p = subprocess.Popen(['sudo', 'tcpdump', '-i', 'eth0', '-tt', '-n', 'not',  'arp'], stdout=subprocess.PIPE)
-# def worker(processes):
-#   dumps = [[] for _ in processes]
-#   listeners = [Collector(p, dumps[i]) for i, p in enumerate(processes)]
-#   for listener in listeners:
-#     listener.start()
-#   input("Press Enter to stop logging 2")
-#   for listener in listeners:
-#     listener.flag = True
-#   print(dumps)
-
-dumps = [[] for _ in processes]
+dumps = [([], link) for (p, link) in processes]
 # p = multiprocessing.Process(target=worker, args=(processes,))
 # p.start()
-listeners = [Collector(p, dumps[i]) for i, p in enumerate(processes)]
+listeners = [Collector(p, dumps[i][0]) for i, (p, link) in enumerate(processes)]
 for listener in listeners:
     listener.start()
 
@@ -74,28 +49,27 @@ input("Press Enter to stop logging")
 
 
 # p.terminate()
-for process in processes:
+for (process, link) in processes:
   process.kill()
 
 # for listener in listeners:
 #   listener.flag = True
 
 print("MADE IT HERE")
-print(dumps)
+print(dumps[0][0])
+os.chdir('..')
 jsonOut = open("log.json", "w")
 logList = []
 print('opened json')
-for (fileObj, link) in fileAndLinks:
-    fileObj.seek(0)
+
+for (dump, link) in dumps:
     linkGrepped = re.search("s\d{1}(\d{1})(\d{2})-eth(\d)", link)
     level = linkGrepped.group(1)
-    swName = linkGrepped.group(1)
-    port = linkGrepped.group(2)
+    swName = linkGrepped.group(2)
+    port = linkGrepped.group(3)
 
     # read
-    for line in fileObj:
-      # print(line)
-      # regex
+    for line in dump:
       greppedLine = re.search("^(\d+\.\d+) IP ", line)
       if not greppedLine:
         continue
