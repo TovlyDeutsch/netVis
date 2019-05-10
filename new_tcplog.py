@@ -4,13 +4,13 @@ import re
 import json
 import time
 from threading import Thread
+import multiprocessing
 
 class Collector(Thread):
     def __init__(self, p, dump):
-        Thread.__init__(self)
+        Thread.__init__(self, daemon=True)
         self.p = p
         self.dump = dump
-        self.flag = False
 
     # Body of the thread. Loop continuously every 0.1s (10ms).
     def run(self):
@@ -44,8 +44,19 @@ fileAndLinks = [(open(f"Logs/{link}.txt", "w+"), link) for link in links]
 processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-U', '-tt', '-n', 'not',  'arp'],
                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1) for (fileObj, link) in fileAndLinks]
 #p = subprocess.Popen(['sudo', 'tcpdump', '-i', 'eth0', '-tt', '-n', 'not',  'arp'], stdout=subprocess.PIPE)
+# def worker(processes):
+#   dumps = [[] for _ in processes]
+#   listeners = [Collector(p, dumps[i]) for i, p in enumerate(processes)]
+#   for listener in listeners:
+#     listener.start()
+#   input("Press Enter to stop logging 2")
+#   for listener in listeners:
+#     listener.flag = True
+#   print(dumps)
 
 dumps = [[] for _ in processes]
+# p = multiprocessing.Process(target=worker, args=(processes,))
+# p.start()
 listeners = [Collector(p, dumps[i]) for i, p in enumerate(processes)]
 for listener in listeners:
     listener.start()
@@ -54,14 +65,18 @@ for listener in listeners:
 input("Press Enter to stop logging")
 
 
-
+# p.terminate()
 for process in processes:
   process.kill()
+
+# for listener in listeners:
+#   listener.flag = True
 
 print("MADE IT HERE")
 print(dumps)
 jsonOut = open("log.json", "w")
 logList = []
+print('opened json')
 for (fileObj, link) in fileAndLinks:
     fileObj.seek(0)
     linkGrepped = re.search("s\d2(\d{2})-eth(\d)", link)
@@ -85,7 +100,7 @@ for (fileObj, link) in fileAndLinks:
 
 logList.sort(key=lambda x: x["timestamp"])
 json.dump(logList, jsonOut)
-
+print('end of file')
     
 
 """
