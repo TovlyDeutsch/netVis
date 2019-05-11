@@ -2,11 +2,11 @@ import subprocess
 from functools import reduce
 import re
 import json
-import time
+from time import sleep
 from threading import Thread
 import multiprocessing
 import os
-os.chdir('projectb-TovlyDeutsch') #TODO point this out in user guide
+#os.chdir('projectb-TovlyDeutsch') #TODO point this out in user guide
 
 class Collector(Thread):
     def __init__(self, p, dump):
@@ -34,8 +34,8 @@ baseLinks = reduce(lambda acc, swName: acc +
 
 links = aggrLinks + baseLinks
 
-processes = [(subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-U', '-tt', '-n', 'not',  'arp'],
-                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1), link) for link in links]
+processes = [(subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-tt', '-n', 'not',  'arp'],
+                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True), link) for link in links]
 
 dumps = [([], link) for (p, link) in processes]
 # p = multiprocessing.Process(target=worker, args=(processes,))
@@ -44,8 +44,8 @@ listeners = [Collector(p, dumps[i][0]) for i, (p, link) in enumerate(processes)]
 for listener in listeners:
     listener.start()
 
-# time.sleep(20)
-input("Press Enter to stop logging")
+sleep(10)
+#input("Press Enter to stop logging")
 
 
 # p.terminate()
@@ -57,8 +57,7 @@ for (process, link) in processes:
 
 print("MADE IT HERE")
 print(dumps[0][0])
-os.chdir('..')
-jsonOut = open("log.json", "w")
+#os.chdir('..')
 logList = []
 print('opened json')
 
@@ -70,7 +69,7 @@ for (dump, link) in dumps:
 
     # read
     for line in dump:
-      greppedLine = re.search("^(\d+\.\d+) IP ", line)
+      greppedLine = re.search("^(\d+\.\d+) IP \d+\.\d+\.\d+\.(\d+) > \d+\.\d+\.\d+\.(\d+):", line)
       if not greppedLine:
         continue
 
@@ -78,12 +77,16 @@ for (dump, link) in dumps:
         'swName': swName,
         "port": port,
         'level': level,
-        "timestamp": float(greppedLine.group(1))
+        "timestamp": float(greppedLine.group(1)),
+        "src": int(greppedLine.group(2)),
+        "dst": int(greppedLine.group(3))
       }
       logList.append(obj)
 
 logList.sort(key=lambda x: x["timestamp"])
-json.dump(logList, jsonOut)
+with open("log.json", "w") as jsonOut:
+    json.dump(logList, jsonOut)
+
 print('end of file')
     
 
