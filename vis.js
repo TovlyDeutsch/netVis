@@ -76,11 +76,7 @@ for (let i = 0; i < 16; i++) {
   );
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
-  path.onClick=function(event)
-  {
-    chosenHost2=chosenHost1;
-    chosenHost1=i+1;
-  }
+
 
   hosts.push(path);
 
@@ -90,6 +86,11 @@ for (let i = 0; i < 16; i++) {
       startHeight + hostSize / 2 + 5
     )
   );
+  text.onClick=function(event)
+  {
+    chosenHost2=chosenHost1;
+    chosenHost1=i+1;
+  }
   text.justification = "center";
   text.content = i + 1;
 }
@@ -441,6 +442,7 @@ function heatToCongestion() {
       linkPath.data.heat *= 1 + fadeFactor;
       let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
       total += congestion;
+      if(linkPath.data.lastPacketTime)
       linkPath.strokeColor = congestionToColor(congestion);
     }
     let switchCongestion = total / 4;
@@ -490,7 +492,7 @@ function processLog(log, delta, mode) {
       let dst=parseInt(log.dst);
       if(chosenHost2>-1 && chosenHost1>-1)
       {
-        if(!(src+dst===chosenHost1+chosenHost2 && src*dst==chosenHost1*chosenHost2))
+        if(!(src+dst===chosenHost1+chosenHost2 && src*dst===chosenHost1*chosenHost2))
         {
           break;
         }
@@ -522,6 +524,7 @@ function processLog(log, delta, mode) {
 
 
 view.onFrame = function onFrame(event) {
+  recolorHosts();
   if (jsonLogs === null || paused) {
     return;
   }
@@ -529,7 +532,7 @@ view.onFrame = function onFrame(event) {
   let scaledDelta = delta / slowDown;
   currentTime += scaledDelta;
   // console.log(`current time ${currentTime}`);
-  recolorHosts();
+  
   for (
     ;
     (jsonLogs[nextLogIndex].timestamp - firstLogTime < currentTime ||
