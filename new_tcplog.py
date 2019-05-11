@@ -2,9 +2,11 @@ import subprocess
 from functools import reduce
 import re
 import json
-import time
+from time import sleep
 from threading import Thread
 import multiprocessing
+import os
+#os.chdir('projectb-TovlyDeutsch') #TODO point this out in user guide
 
 class Collector(Thread):
     def __init__(self, p, dump):
@@ -18,88 +20,73 @@ class Collector(Thread):
         line = self.p.stdout.readline()
         self.dump.append(line)
 
-"""
-pidToLink = {
-  pid => indx in `processes`
-}
-"""
-
-f = open("test.txt", "w")
-
 aggPorts = range(1, 5)
+basePorts = range(1, 3)
 swNames = [f's42{num:02}' for num in range(1, 9)]
 
-links = reduce(lambda acc, swName: acc +
+baseSwNames = [f's41{num:02}' for num in range(1, 9)]
+
+aggrLinks = reduce(lambda acc, swName: acc +
                [f"{swName}-eth{link}"  for link in aggPorts], swNames, [])
 
-for link in links:
-    print(link)
+baseLinks = reduce(lambda acc, swName: acc +
+    [f"{swName}-eth{link}" for link in basePorts], baseSwNames, [])
 
-fileAndLinks = [(open(f"Logs/{link}.txt", "w+"), link) for link in links]
+links = aggrLinks + baseLinks
 
-# sudoPassword = 'mininet'
-# command = 'mount -t vboxsf myfolder /home/mininet/netVis'
-# p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
+processes = [(subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-tt', '-n', 'not',  'arp'],
+                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True), link) for link in links]
 
-processes = [subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-U', '-tt', '-n', 'not',  'arp'],
-                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1) for (fileObj, link) in fileAndLinks]
-#p = subprocess.Popen(['sudo', 'tcpdump', '-i', 'eth0', '-tt', '-n', 'not',  'arp'], stdout=subprocess.PIPE)
-# def worker(processes):
-#   dumps = [[] for _ in processes]
-#   listeners = [Collector(p, dumps[i]) for i, p in enumerate(processes)]
-#   for listener in listeners:
-#     listener.start()
-#   input("Press Enter to stop logging 2")
-#   for listener in listeners:
-#     listener.flag = True
-#   print(dumps)
-
-dumps = [[] for _ in processes]
+dumps = [([], link) for (p, link) in processes]
 # p = multiprocessing.Process(target=worker, args=(processes,))
 # p.start()
-listeners = [Collector(p, dumps[i]) for i, p in enumerate(processes)]
+listeners = [Collector(p, dumps[i][0]) for i, (p, link) in enumerate(processes)]
 for listener in listeners:
     listener.start()
 
-# time.sleep(20)
-input("Press Enter to stop logging")
+sleep(10)
+#input("Press Enter to stop logging")
 
 
 # p.terminate()
-for process in processes:
+for (process, link) in processes:
   process.kill()
 
 # for listener in listeners:
 #   listener.flag = True
 
 print("MADE IT HERE")
-print(dumps)
-jsonOut = open("log.json", "w")
+print(dumps[0][0])
+#os.chdir('..')
 logList = []
 print('opened json')
-for (fileObj, link) in fileAndLinks:
-    fileObj.seek(0)
-    linkGrepped = re.search("s\d2(\d{2})-eth(\d)", link)
-    swName = linkGrepped.group(1)
-    port = linkGrepped.group(2)
+
+for (dump, link) in dumps:
+    linkGrepped = re.search("s\d{1}(\d{1})(\d{2})-eth(\d)", link)
+    level = linkGrepped.group(1)
+    swName = linkGrepped.group(2)
+    port = linkGrepped.group(3)
 
     # read
-    for line in fileObj:
-      # print(line)
-      # regex
-      greppedLine = re.search("^(\d+\.\d+) IP ", line)
+    for line in dump:
+      greppedLine = re.search("^(\d+\.\d+) IP \d+\.\d+\.\d+\.(\d+) > \d+\.\d+\.\d+\.(\d+):", line)
       if not greppedLine:
         continue
 
       obj = {
         'swName': swName,
         "port": port,
-        "timestamp": float(greppedLine.group(1))
+        'level': level,
+        "timestamp": float(greppedLine.group(1)),
+        "src": int(greppedLine.group(2)),
+        "dst": int(greppedLine.group(3))
       }
       logList.append(obj)
 
 logList.sort(key=lambda x: x["timestamp"])
-json.dump(logList, jsonOut)
+with open("log.json", "w") as jsonOut:
+    json.dump(logList, jsonOut)
+
 print('end of file')
     
 

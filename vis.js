@@ -1,6 +1,9 @@
 paper.install(window);
 paper.setup("myCanvas");
 
+let chosenHost1=-1;
+let chosenHost2=-1;
+
 let startHeight = 400;
 let hostSize = 20;
 let hostGap = 30;
@@ -20,6 +23,7 @@ let startingSwitchHeat = 0;
 let startingSwitchCongestion = 0;
 
 let startLinkHeat = 10000;
+
 
 function getHeightSwX(i) {
   return hostSize + hostGap * 0.5 + 50 + 2 * i * (hostSize + hostGap);
@@ -50,10 +54,14 @@ function getLinkIndex(sw, port) {
   }
 }
 
-function getSwitches(sw, port) {}
+function getBaseLinkIndex(sw, port) {
+  return sw * 2 - 3 + port;
+}
+
+// function getSwitches(sw, port) {}
 
 for (let i = 0; i < 16; i++) {
-  let baseHost = new Path.Rectangle(
+  /*let baseHost = new Path.Rectangle(
     new Point(50 + i * (hostSize + hostGap), startHeight),
     new Size(hostSize, hostSize)
   );
@@ -61,13 +69,15 @@ for (let i = 0; i < 16; i++) {
     fillColor: "white",
     strokeColor: "black"
   };
-  hosts.push(baseHost);
+  hosts.push(baseHost);*/
   let rectangle = new Rectangle(
     new Point(50 + i * (hostSize + hostGap), startHeight),
     new Point(50 + i * (hostSize + hostGap) + hostSize, startHeight + hostSize)
   );
   let path = new Path.Rectangle(rectangle);
   path.strokeColor = "black";
+
+
   hosts.push(path);
 
   var text = new PointText(
@@ -76,6 +86,11 @@ for (let i = 0; i < 16; i++) {
       startHeight + hostSize / 2 + 5
     )
   );
+  text.onClick=function(event)
+  {
+    chosenHost2=chosenHost1;
+    chosenHost1=i+1;
+  }
   text.justification = "center";
   text.content = i + 1;
 }
@@ -91,11 +106,20 @@ for (let i = 0; i < 8; i++) {
   path.data.heat = startingSwitchHeat;
   path.data.lastPacketTime = 0;
   path.data.congestion = startingSwitchCongestion;
+  path.data.level = 1;
   let swNum = i + 1;
+  path.onClick=function(event)
+  {
+    chosenHost2=chosenHost1;
+    chosenHost1=-1;
+  }
   path.data.links = [
     getLinkIndex(swNum, 2 - (swNum % 2)),
-    getLinkIndex(swNum + 2 * (swNum % 2) - 1, 2 - (swNum % 2))
+    getLinkIndex(swNum + 2 * (swNum % 2) - 1, 2 - (swNum % 2)),
+    getBaseLinkIndex(swNum, 1),
+    getBaseLinkIndex(swNum, 2)
   ];
+
   console.log(`swNum: ${swNum}, level: aggr, indexes: ${path.data.links}`);
 
   swBase.push(path);
@@ -123,7 +147,11 @@ for (let i = 0; i < 8; i++) {
   path.strokeColor = "black";
   path.data.heat = startingSwitchHeat;
   path.data.lastPacketTime = 0;
-
+  path.onClick=function(event)
+  {
+    chosenHost2=chosenHost1;
+    chosenHost1=-1;
+  }
   path.data.congestion = startingSwitchCongestion;
   let swNum = i + 1;
   path.data.links = [
@@ -164,7 +192,11 @@ for (let i = 0; i < 4; i++) {
   path.data.heat = startingSwitchHeat;
   path.data.lastPacketTime = 0;
   path.data.congestion = startingSwitchCongestion;
-
+  path.onClick=function(event)
+  {
+    chosenHost2=chosenHost1;
+    chosenHost1=-1;
+  }
   let swNum = i + 1;
   path.data.links = [
     getLinkIndex(1 + Math.floor(i / 2), 4 - (swNum % 2)),
@@ -193,6 +225,9 @@ for (let i = 0; i < 16; i++) {
   path.strokeColor = "black";
   path.moveTo(new Point(getHostMid(i), startHeight));
   path.lineTo(new Point(getHeightSwX(j), startHeight - layer1Gap + switchSize));
+  path.data.heat = startLinkHeat;
+  path.data.lastPacketTime = 0;
+  path.data.workingHeat = startLinkHeat;
   linkH.push(path);
 }
 
@@ -396,15 +431,35 @@ let allSw = swAgg.concat(swBase).concat(swCore);
 function heatToCongestion() {
   for (let swPath of allSw) {
     let total = 0;
-    for (let linkIndex of swPath.data.links) {
-      let linkPath = linkA[linkIndex];
+    let used=false;
+    for (let [i, linkIndex] of swPath.data.links.entries()) {
+      let linkPath;
+      if (swPath.data.level === 1 && i > 1) {
+        // console.log("refed linkH");
+        linkPath = linkH[linkIndex];
+      } else {
+        linkPath = linkA[linkIndex];
+      }
       linkPath.data.heat *= 1 + fadeFactor;
       let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
       total += congestion;
-      linkPath.strokeColor = congestionToColor(congestion);
+      if(linkPath.data.lastPacketTime)
+      {
+        linkPath.strokeColor = congestionToColor(congestion);
+        used=true;
+      }
+      else
+      linkPath.strokeColor = new Color(0.8,0.8,0.8);
     }
     let switchCongestion = total / 4;
-    swPath.strokeColor = congestionToColor(switchCongestion);
+    if(used)
+    {
+      swPath.strokeColor = congestionToColor(switchCongestion);
+    }
+    else
+    {
+      swPath.strokeColor=new Color(0.8,0.8,0.8);
+    }
   }
 }
 
@@ -427,13 +482,45 @@ function linkToSwitch(swNum, port) {
   }
 }
 
+function recolorHosts()
+{
+  for(let i=0;i<16;i++)
+  {
+    if(chosenHost1 === i+1||chosenHost2 === i+1)
+    {
+      hosts[i].strokeColor=new Color(0,0.5,0.5);
+    }
+  
+    else 
+    {
+      hosts[i].strokeColor="black";
+    }
+  }
+}
+
 function processLog(log, delta, mode) {
   switch (mode) {
     case "thermal":
+      let src=parseInt(log.src);
+      let dst=parseInt(log.dst);
+      if(chosenHost2>-1 && chosenHost1>-1&& chosenHost1!= chosenHost2)
+      {
+        if(!(src+dst===chosenHost1+chosenHost2 && src*dst===chosenHost1*chosenHost2))
+        {
+          break;
+        }
+      }
       let swNum = parseInt(log.swName);
       let port = parseInt(log.port);
-      let linkIndex = getLinkIndex(swNum, port);
-      let linkPath = linkA[linkIndex];
+      let level = parseInt(log.level);
+      if (level === 2) {
+        let linkIndex = getLinkIndex(swNum, port);
+        var linkPath = linkA[linkIndex];
+      } else {
+        // console.log("processed level 1");
+        let linkIndex = getBaseLinkIndex(swNum, port);
+        var linkPath = linkH[linkIndex];
+      }
       if (!linkPath.data.lastPacketTime) {
         linkPath.data.lastPacketTime = log.timestamp;
         break;
@@ -447,7 +534,10 @@ function processLog(log, delta, mode) {
   }
 }
 
+
+
 view.onFrame = function onFrame(event) {
+  recolorHosts();
   if (jsonLogs === null || paused) {
     return;
   }
@@ -455,7 +545,7 @@ view.onFrame = function onFrame(event) {
   let scaledDelta = delta / slowDown;
   currentTime += scaledDelta;
   // console.log(`current time ${currentTime}`);
-
+  
   for (
     ;
     (jsonLogs[nextLogIndex].timestamp - firstLogTime < currentTime ||
