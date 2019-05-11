@@ -503,7 +503,7 @@ function processLog(log, delta, mode) {
     case "thermal":
       let src=parseInt(log.src);
       let dst=parseInt(log.dst);
-      if(chosenHost2>-1 && chosenHost1>-1)
+      if(chosenHost2>-1 && chosenHost1>-1&& chosenHost1!= chosenHost2)
       {
         if(!(src+dst===chosenHost1+chosenHost2 && src*dst===chosenHost1*chosenHost2))
         {
