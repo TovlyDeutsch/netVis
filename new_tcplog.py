@@ -6,7 +6,7 @@ from time import sleep
 from threading import Thread
 import multiprocessing
 import os
-#os.chdir('projectb-TovlyDeutsch') #TODO point this out in user guide
+os.chdir('projectb-TovlyDeutsch')
 
 class Collector(Thread):
     def __init__(self, p, dump):
@@ -34,7 +34,7 @@ baseLinks = reduce(lambda acc, swName: acc +
 
 links = aggrLinks + baseLinks
 
-processes = [(subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-tt', '-n', 'not',  'arp'],
+processes = [(subprocess.Popen(['sudo', 'tcpdump', '-i', link, '-l', '-tt', '-n', 'not', 'arp'],
                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True), link) for link in links]
 
 dumps = [([], link) for (p, link) in processes]
@@ -44,8 +44,8 @@ listeners = [Collector(p, dumps[i][0]) for i, (p, link) in enumerate(processes)]
 for listener in listeners:
     listener.start()
 
-sleep(10)
-#input("Press Enter to stop logging")
+# sleep(10)
+input("Press Enter to stop logging")
 
 
 # p.terminate()
@@ -69,7 +69,7 @@ for (dump, link) in dumps:
 
     # read
     for line in dump:
-      greppedLine = re.search("^(\d+\.\d+) IP \d+\.\d+\.\d+\.(\d+) > \d+\.\d+\.\d+\.(\d+):", line)
+      greppedLine = re.search("^(\d+\.\d+) IP \d+\.\d+\.\d+\.(\d+).+?> \d+\.\d+\.\d+\.(\d+)", line)
       if not greppedLine:
         continue
 
@@ -84,7 +84,7 @@ for (dump, link) in dumps:
       logList.append(obj)
 
 logList.sort(key=lambda x: x["timestamp"])
-with open("log.json", "w") as jsonOut:
+with open("all_down_log.json", "w") as jsonOut:
     json.dump(logList, jsonOut)
 
 print('end of file')
