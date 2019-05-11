@@ -431,6 +431,7 @@ let allSw = swAgg.concat(swBase).concat(swCore);
 function heatToCongestion() {
   for (let swPath of allSw) {
     let total = 0;
+    let used=false;
     for (let [i, linkIndex] of swPath.data.links.entries()) {
       let linkPath;
       if (swPath.data.level === 1 && i > 1) {
@@ -443,10 +444,22 @@ function heatToCongestion() {
       let congestion = bitsPerpacket / maxCapacityMb / linkPath.data.heat;
       total += congestion;
       if(linkPath.data.lastPacketTime)
-      linkPath.strokeColor = congestionToColor(congestion);
+      {
+        linkPath.strokeColor = congestionToColor(congestion);
+        used=true;
+      }
+      else
+      linkPath.strokeColor = new Color(0.8,0.8,0.8);
     }
     let switchCongestion = total / 4;
-    swPath.strokeColor = congestionToColor(switchCongestion);
+    if(used)
+    {
+      swPath.strokeColor = congestionToColor(switchCongestion);
+    }
+    else
+    {
+      swPath.strokeColor=new Color(0.8,0.8,0.8);
+    }
   }
 }
 
